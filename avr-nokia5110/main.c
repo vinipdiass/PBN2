@@ -33,18 +33,29 @@ int main(void)
     while (1)
     {
         nokia_lcd_clear();
+        uint8_t x1, y1, x2, y2;
+        x1 = 100;
+        x2 = 90;
+        y1 = 100;
+        y2 = 90;
+
+
+        nokia_lcd_drawline(x1, y1, x2, y2);
+        /*
         for (int i = 0; i < 20; i++)
         {
-            uint8_t x1, y1, x2, y2;
+            
             x1 = rand() % 84;
             y1 = rand() % 48;
             x2 = rand() % 84;
             y2 = rand() % 48;
             // uint8_t r = rand() % 10;
-            nokia_lcd_drawline(x1, y1, x2, y2);
+            
             // nokia_lcd_drawrect(x1, y1, x2, y2);
             // nokia_lcd_drawcircle(x1, y1, r);
         }
+        */
+       
         nokia_lcd_render();
         // _delay_ms(100);
     }
