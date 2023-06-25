@@ -34,10 +34,10 @@ int main(void)
     {
         nokia_lcd_clear();
         uint8_t x1, y1, x2, y2;
-        x1 = 100;
-        x2 = 90;
-        y1 = 100;
-        y2 = 90;
+        x1 = 40;
+        x2 = 20;
+        y1 = 40;
+        y2 = 20;
 
 
         nokia_lcd_drawline(x1, y1, x2, y2);

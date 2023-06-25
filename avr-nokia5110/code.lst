@@ -791,10 +791,10 @@ Desmontagem da seção .text:
  826:	81 e0       	ldi	r24, 0x01	; 1
  828:	0e 94 80 02 	call	0x500	; 0x500 <nokia_lcd_custom>
  82c:	0e 94 a5 01 	call	0x34a	; 0x34a <nokia_lcd_clear>
- 830:	2a e5       	ldi	r18, 0x5A	; 90
- 832:	4a e5       	ldi	r20, 0x5A	; 90
- 834:	64 e6       	ldi	r22, 0x64	; 100
- 836:	84 e6       	ldi	r24, 0x64	; 100
+ 830:	24 e1       	ldi	r18, 0x14	; 20
+ 832:	44 e1       	ldi	r20, 0x14	; 20
+ 834:	68 e2       	ldi	r22, 0x28	; 40
+ 836:	88 e2       	ldi	r24, 0x28	; 40
  838:	0e 94 b4 02 	call	0x568	; 0x568 <nokia_lcd_drawline>
  83c:	0e 94 9f 02 	call	0x53e	; 0x53e <nokia_lcd_render>
  840:	f5 cf       	rjmp	.-22     	; 0x82c <main+0x12>
