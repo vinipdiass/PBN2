@@ -19,6 +19,10 @@
 
 uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 
+void moveNaveCima(){
+    
+}
+
 int main(void)
 {
     nokia_lcd_init();
@@ -43,16 +47,16 @@ int main(void)
 
     nokia_lcd_custom(2, nave);
     //lcd write p1: qual objeto | p2: qual o tamanho
-    nokia_lcd_set_cursor(0, 16);
-    nokia_lcd_write_char(2, 2);
-    nokia_lcd_render();
-    /*
-    for (int i = 0; i < 4; i+4){
-        nokia_lcd_clear();
 
+    
+    for (int i = 0; i < 20; i+4){
+        nokia_lcd_clear();
+        nokia_lcd_set_cursor(0, i);
+        nokia_lcd_write_char(2, 2);
+        nokia_lcd_render();
         _delay_ms(3000);
     }
-    */
+    
     
     while (1)
     {
