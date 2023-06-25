@@ -3,25 +3,25 @@ code.elf: formato do arquivo elf32-avr
 
 Seções:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000000e  00800100  00000c24  00000cb8  2**0
+  0 .data         0000000e  00800100  00000c42  00000cd6  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000c24  00000000  00000000  00000094  2**1
+  1 .text         00000c42  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000023a  0080010e  0080010e  00000cc6  2**0
+  2 .bss          0000023a  0080010e  0080010e  00000ce4  2**0
                   ALLOC
-  3 .stab         0000144c  00000000  00000000  00000cc8  2**2
+  3 .stab         0000147c  00000000  00000000  00000ce4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00001227  00000000  00000000  00002114  2**0
+  4 .stabstr      00001227  00000000  00000000  00002160  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .comment      00000011  00000000  00000000  0000333b  2**0
+  5 .comment      00000011  00000000  00000000  00003387  2**0
                   CONTENTS, READONLY
-  6 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000334c  2**2
+  6 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00003398  2**2
                   CONTENTS, READONLY
-  7 .debug_info   000005f4  00000000  00000000  0000338c  2**0
+  7 .debug_info   000005f4  00000000  00000000  000033d8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 000005a2  00000000  00000000  00003980  2**0
+  8 .debug_abbrev 000005a2  00000000  00000000  000039cc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   0000001a  00000000  00000000  00003f22  2**0
+  9 .debug_line   0000001a  00000000  00000000  00003f6e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000208  00000000  00000000  00003f3c  2**0
+ 10 .debug_str    00000208  00000000  00000000  00003f88  2**0
                   CONTENTS, READONLY, DEBUGGING
