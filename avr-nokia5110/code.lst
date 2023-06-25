@@ -814,7 +814,7 @@ Desmontagem da seção .text:
  856:	7f 4f       	sbci	r23, 0xFF	; 255
  858:	82 e0       	ldi	r24, 0x02	; 2
  85a:	0e 94 80 02 	call	0x500	; 0x500 <nokia_lcd_custom>
- 85e:	64 e0       	ldi	r22, 0x04	; 4
+ 85e:	60 e1       	ldi	r22, 0x10	; 16
  860:	80 e0       	ldi	r24, 0x00	; 0
  862:	0e 94 9a 02 	call	0x534	; 0x534 <nokia_lcd_set_cursor>
  866:	62 e0       	ldi	r22, 0x02	; 2
