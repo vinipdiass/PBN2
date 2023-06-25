@@ -42,7 +42,7 @@ int main(void)
         };
 
     nokia_lcd_custom(2, bichinho);
-    nokia_lcd_write_char(2, 2);
+    nokia_lcd_write_char(1, 2);
     nokia_lcd_render();
     while (1)
     {
