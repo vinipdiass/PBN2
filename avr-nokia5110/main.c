@@ -30,7 +30,7 @@ int main(void)
     // nokia_lcd_drawcircle(20,20,20);
     // nokia_lcd_render();
     // while(1);
-    uint8_t bichinho[8] = {
+    uint8_t nave[8] = {
         0B00000,
         0B11011,
         0B01010,
@@ -41,9 +41,9 @@ int main(void)
         0B11111,
         };
 
-    nokia_lcd_custom(2, bichinho);
+    nokia_lcd_custom(2, nave);
     //lcd write p1: qual objeto | p2: qual o tamanho
-    nokia_lcd_write_char(2, 1);
+    nokia_lcd_write_char(2, 2);
     nokia_lcd_render();
     while (1)
     {
