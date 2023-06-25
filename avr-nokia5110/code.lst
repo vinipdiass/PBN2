@@ -843,17 +843,17 @@ Desmontagem da seção .text:
  896:	07 c0       	rjmp	.+14     	; 0x8a6 <main+0x60>
  898:	0c 5f       	subi	r16, 0xFC	; 252
  89a:	1f 4f       	sbci	r17, 0xFF	; 255
- 89c:	60 e0       	ldi	r22, 0x00	; 0
- 89e:	70 e0       	ldi	r23, 0x00	; 0
- 8a0:	c8 01       	movw	r24, r16
+ 89c:	b8 01       	movw	r22, r16
+ 89e:	80 e0       	ldi	r24, 0x00	; 0
+ 8a0:	90 e0       	ldi	r25, 0x00	; 0
  8a2:	0e 94 43 01 	call	0x286	; 0x286 <moveNave>
  8a6:	4f 9b       	sbis	0x09, 7	; 9
  8a8:	f5 cf       	rjmp	.-22     	; 0x894 <main+0x4e>
  8aa:	04 50       	subi	r16, 0x04	; 4
  8ac:	11 09       	sbc	r17, r1
- 8ae:	60 e0       	ldi	r22, 0x00	; 0
- 8b0:	70 e0       	ldi	r23, 0x00	; 0
- 8b2:	c8 01       	movw	r24, r16
+ 8ae:	b8 01       	movw	r22, r16
+ 8b0:	80 e0       	ldi	r24, 0x00	; 0
+ 8b2:	90 e0       	ldi	r25, 0x00	; 0
  8b4:	0e 94 43 01 	call	0x286	; 0x286 <moveNave>
  8b8:	ed cf       	rjmp	.-38     	; 0x894 <main+0x4e>
 

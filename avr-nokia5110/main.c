@@ -62,12 +62,12 @@ int main(void)
 
     while (1) {
         if (PIND & (1 << PD6)){
-            x+=4;
+            y+=4;
             moveNave(x, y);
         }
 
         if (PIND & (1 << PD7)){
-            x-=4;
+            y-=4;
             moveNave(x, y);
         }
         /*
