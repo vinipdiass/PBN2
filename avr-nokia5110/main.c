@@ -43,14 +43,16 @@ int main(void)
 
     nokia_lcd_custom(2, nave);
     //lcd write p1: qual objeto | p2: qual o tamanho
-
+    nokia_lcd_set_cursor(0, 4);
+    nokia_lcd_write_char(2, 2);
+    nokia_lcd_render();
+    /*
     for (int i = 0; i < 4; i+4){
         nokia_lcd_clear();
-        nokia_lcd_set_cursor(0, i);
-        nokia_lcd_write_char(2, 2);
-        nokia_lcd_render();
+
         _delay_ms(3000);
     }
+    */
     
     while (1)
     {
