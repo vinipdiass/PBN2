@@ -19,12 +19,18 @@
 
 uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 
-void moveNaveCima(){
-    
+void moveNave(int x, int y){
+    nokia_lcd_clear();
+    nokia_lcd_set_cursor(x, y);
+    nokia_lcd_write_char(2, 2);
+    nokia_lcd_render();
 }
 
 int main(void)
 {
+    int x = 0; //Horizontal
+    int y = 0; //Vertical
+
     nokia_lcd_init();
     nokia_lcd_clear();
     nokia_lcd_custom(1, glyph);
@@ -43,68 +49,33 @@ int main(void)
         0B11011,
         0B10101,
         0B11111,
-        };
+    };
 
     nokia_lcd_custom(2, nave);
     //lcd write p1: qual objeto | p2: qual o tamanho
 
-    
-        nokia_lcd_clear();
-        nokia_lcd_set_cursor(0, 0);
-        nokia_lcd_write_char(2, 2);
-        nokia_lcd_render();
-        _delay_ms(3000);
+    while (1) {
 
-        nokia_lcd_clear();
-        nokia_lcd_set_cursor(0, 4);
-        nokia_lcd_write_char(2, 2);
-        nokia_lcd_render();
-        _delay_ms(3000);
-
-        nokia_lcd_clear();
-        nokia_lcd_set_cursor(0, 8);
-        nokia_lcd_write_char(2, 2);
-        nokia_lcd_render();
-        _delay_ms(3000);
-
-        nokia_lcd_clear();
-        nokia_lcd_set_cursor(0, 12);
-        nokia_lcd_write_char(2, 2);
-        nokia_lcd_render();
-        _delay_ms(3000);
-    
-    
-    
-    while (1)
-    {
         /*
-        nokia_lcd_clear();
-        uint8_t x1, y1, x2, y2;
-        x1 = 40;
-        x2 = 20;
-        y1 = 40;
-        y2 = 20;
-        */
-        
+        if (usuario apertar ^){
+            x+=4;
+            moveNave(x, y);
+        }
 
+        if (usuario apertar v){
+            x-=4;
+            moveNave(x, y);
+        }
 
-        
-        /*
-        for (int i = 0; i < 20; i++)
-        {
-            
-            x1 = rand() % 84;
-            y1 = rand() % 48;
-            x2 = rand() % 84;
-            y2 = rand() % 48;
-            // uint8_t r = rand() % 10;
-            
-            // nokia_lcd_drawrect(x1, y1, x2, y2);
-            // nokia_lcd_drawcircle(x1, y1, r);
+        if (usuario apertar >){
+            y+=4;
+            moveNave(x, y);
+        }
+
+        if (usuario apertar <){
+            y-=4;
+            moveNave(x, y);
         }
         */
-       
-        
-        // _delay_ms(100);
     }
 }
