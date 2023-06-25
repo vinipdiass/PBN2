@@ -818,7 +818,7 @@ Desmontagem da seção .text:
  860:	82 e0       	ldi	r24, 0x02	; 2
  862:	0e 94 df 01 	call	0x3be	; 0x3be <nokia_lcd_write_char>
  866:	0e 94 9f 02 	call	0x53e	; 0x53e <nokia_lcd_render>
- 86a:	f9 cf       	rjmp	.-14     	; 0x85e <main+0x44>
+ 86a:	ff cf       	rjmp	.-2      	; 0x86a <main+0x50>
 
 0000086c <__udivmodqi4>:
  86c:	99 1b       	sub	r25, r25
