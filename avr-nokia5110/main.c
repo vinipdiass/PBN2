@@ -63,7 +63,7 @@ int main(void)
 
     while (1) {
         if (PIND & (1 << PD7)){
-            y+=4;
+            if (y!=36) y+=4;
             moveNave(x, y);
         }
 
