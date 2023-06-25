@@ -42,8 +42,8 @@ int main(void)
         };
 
     nokia_lcd_custom(2, bichinho);
-
-    nokia_lcd_write_char(2, 4);
+    //lcd write p1: qual objeto | p2: qual o tamanho
+    nokia_lcd_write_char(2, 1);
     nokia_lcd_render();
     while (1)
     {
