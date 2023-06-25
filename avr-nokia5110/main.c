@@ -49,7 +49,7 @@ int main(void)
     //lcd write p1: qual objeto | p2: qual o tamanho
 
     
-    for (int i = 0; i < 20; i+4){
+    for (int i = 8; i < 20; i+4){
         nokia_lcd_clear();
         nokia_lcd_set_cursor(0, i);
         nokia_lcd_write_char(2, 2);
