@@ -67,7 +67,7 @@ int main(void)
         }
 
         if (PIND & (1 << PD7)){
-            y-=4;
+            if (y!=0) y-=4;
             moveNave(x, y);
         }
         /*
