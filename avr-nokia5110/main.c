@@ -40,6 +40,12 @@ int main(void)
     // nokia_lcd_drawcircle(20,20,20);
     // nokia_lcd_render();
     // while(1);
+
+       // Entradas
+    DDRD &= ~(1 << PD6); // Cima
+    DDRD &= ~(1 << PD7); // Baixo
+    DDRB &= ~(1 << PB0); // Atira
+
     uint8_t nave[8] = {
         0B00000,
         0B11011,
@@ -55,7 +61,15 @@ int main(void)
     //lcd write p1: qual objeto | p2: qual o tamanho
 
     while (1) {
+        if (PIND & (1 << PD6)){
+            x+=4;
+            moveNave(x, y);
+        }
 
+        if (PIND & (1 << PD7)){
+            x-=4;
+            moveNave(x, y);
+        }
         /*
         if (usuario apertar ^){
             x+=4;
