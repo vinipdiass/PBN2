@@ -24,6 +24,7 @@ void moveNave(int x, int y){
     nokia_lcd_set_cursor(x, y);
     nokia_lcd_write_char(2, 2);
     nokia_lcd_render();
+    _delay_ms(100);
 }
 
 int main(void)
@@ -61,12 +62,12 @@ int main(void)
     //lcd write p1: qual objeto | p2: qual o tamanho
 
     while (1) {
-        if (PIND & (1 << PD6)){
-            y+=4;
+        if (PIND & (1 << PD7)){
+            if (y!=8) y+=4;
             moveNave(x, y);
         }
 
-        if (PIND & (1 << PD7)){
+        if (PIND & (1 << PD6)){
             if (y!=0) y-=4;
             moveNave(x, y);
         }
