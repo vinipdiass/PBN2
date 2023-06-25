@@ -30,17 +30,32 @@ int main(void)
     // nokia_lcd_drawcircle(20,20,20);
     // nokia_lcd_render();
     // while(1);
+    uint8_t bichinho[8] = {
+        0B00000,
+        0B11011,
+        0B01010,
+        0B11111,
+        0B10001,
+        0B11011,
+        0B10101,
+        0B11111,
+        };
+
+    nokia_lcd_custom(2, bichinho);
     while (1)
     {
+        /*
         nokia_lcd_clear();
         uint8_t x1, y1, x2, y2;
         x1 = 40;
         x2 = 20;
         y1 = 40;
         y2 = 20;
+        */
+        
 
 
-        nokia_lcd_drawline(x1, y1, x2, y2);
+        nokia_lcd_write_char(2, 2);
         /*
         for (int i = 0; i < 20; i++)
         {
