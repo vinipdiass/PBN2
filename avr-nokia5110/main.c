@@ -18,6 +18,7 @@
 #include "nokia5110.h"
 #include <avr/interrupt.h>
 #include <stdio.h>
+#include <time.h>
 
 uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 
@@ -25,12 +26,23 @@ uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 #define IRQ_FREQ		15625
 
 
+
+typedef struct{
+    int x;
+    int y;
+    int xTiro;
+    int yTiro;
+    int bTiro;
+}inimigo;
+
 typedef struct{
     int xPlayer;
     int yPlayer;
     int xTiro;
     int yTiro;
     int bTiro;
+    inimigo oponentes[6];
+    int nOponentes;
 }objetosTela;
 
 void desenhaTela(objetosTela tela){
@@ -42,10 +54,40 @@ void desenhaTela(objetosTela tela){
         nokia_lcd_set_cursor(tela.xTiro, tela.yTiro);
         nokia_lcd_write_char(3, 2);  
     }
+    for (int i = 0; i < tela.nOponentes; i++){
+        inimigo inimigoAtual = tela.oponentes[i];
+        nokia_lcd_set_cursor(inimigoAtual.x, inimigoAtual.y);
+        nokia_lcd_write_char(4, 2); 
+    }
+
     nokia_lcd_render();
 }
 
-void tiroPlayer(objetosTela tela){
+objetosTela invocaInimigo(objetosTela tela){
+    srand(time(NULL));
+    int indexInimigo = tela.nOponentes;
+
+    if (indexInimigo >= 6)
+    return tela;
+
+    inimigo inimigoAtual;
+    inimigoAtual.bTiro = 0;
+    inimigoAtual.x = 68;
+    inimigoAtual.y = (rand() % 9) * 4;
+    //Se for igual ao Y de um outro inimigo já existente, faz dnv, n pode ter dois em um mesmo lugar
+    for (int i = 0; i < tela.nOponentes; i++){
+        if (inimigoAtual.y == tela.oponentes[i].y){
+            i = 0;
+            inimigoAtual.y = (rand() % 9) * 4;
+        }
+    }
+    tela.oponentes[indexInimigo] = inimigoAtual;
+    tela.nOponentes++;
+    return tela;
+}
+
+objetosTela tiroPlayer(objetosTela tela){
+    tela = invocaInimigo(tela);
     tela.bTiro = 1;
     tela.xTiro = 8;
     tela.yTiro = tela.yPlayer;
@@ -54,6 +96,7 @@ void tiroPlayer(objetosTela tela){
         _delay_ms(30);
         tela.xTiro += 4;
     }
+    return tela;
 }
 
 void moveNave(int x, int y){
@@ -85,22 +128,33 @@ int main(void)
     DDRD &= ~(1 << PD6); // Cima
     DDRD &= ~(1 << PD7); // Baixo
     DDRB &= ~(1 << PB0); // Atira
-
+    
     uint8_t nave[5] = {
-            0B1011101,
-            0B1110111,
-            0B0010100,
-            0B0001000,
-            0B0001000,
+        0B1011101,
+        0B1110111,
+        0B0010100,
+        0B0001000,
+        0B0001000,
     };
+    nokia_lcd_custom(2, nave);
+    
+    uint8_t tiro[5] = {
+        0B0001000,
+        0B0001000,
+        0B0001000,
+        0B0001000,
+        0B0001000,
+    };
+    nokia_lcd_custom(3, tiro);
 
-        uint8_t tiro[5] = {
-            0B0001000,
-            0B0001000,
-            0B0001000,
-            0B0001000,
-            0B0001000,
+    uint8_t invasor[5] = {
+        0B0010001,
+        0B0010101,
+        0B0001010,
+        0B0001110,
+        0B0010001,
     };
+    nokia_lcd_custom(4, invasor);
 
     // Configuração do TIMER
     cli();
@@ -114,20 +168,15 @@ int main(void)
     PORTC |= 1 << PC1;
     sei();
 
-    nokia_lcd_custom(2, nave);
-    nokia_lcd_custom(3, tiro);
-    objetosTela tela;
-    int x = 0; //Horizontal
-    int y = 0; //Vertical
 
-    int xTiro = 0;
-    int yTiro = 0;
+    objetosTela tela;
 
     tela.xPlayer = 0;
     tela.yPlayer = 0;
     tela.xTiro = 0;
     tela.yTiro = 0;
     tela.bTiro = 0;
+    tela.nOponentes = 0;
 
 
     //lcd write p1: qual objeto | p2: qual o tamanho
@@ -146,7 +195,7 @@ int main(void)
         }
         
         if (PINB & (1 << PB0)){
-            tiroPlayer(tela);
+            tela = tiroPlayer(tela);
         }
 
         /*if (usuario apertar v){
