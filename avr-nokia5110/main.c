@@ -23,37 +23,42 @@ uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 
 #define TIMER_CLK		F_CPU / 1024
 #define IRQ_FREQ		15625
-int x = 0; //Horizontal
-int y = 0; //Vertical
 
-int xTiro = 0;
-int yTiro = 0;
 
 typedef struct{
     int xPlayer;
     int yPlayer;
     int xTiro;
     int yTiro;
+    int bTiro;
 }objetosTela;
 
 void desenhaTela(objetosTela tela){
-    
+    nokia_lcd_clear();
+    //Desenha a nave
+    nokia_lcd_set_cursor(tela.xPlayer, tela.yPlayer);
+    nokia_lcd_write_char(2, 2);
+    if (tela.bTiro == 1){
+        nokia_lcd_set_cursor(tela.xTiro, tela.yTiro);
+        nokia_lcd_write_char(3, 2);  
+    }
+    nokia_lcd_render();
 }
 
-void tiroPlayer(int y){
-    nokia_lcd_set_cursor(8, y);
-    nokia_lcd_write_char(3, 2);
-    nokia_lcd_render();
+void tiroPlayer(objetosTela tela){
+    tela.bTiro = 1;
+    tela.xTiro = 8;
+    tela.yTiro = tela.yPlayer;
+    desenhaTela(tela);
     _delay_ms(3000);
-    nokia_lcd_clear();
-    nokia_lcd_set_cursor(12, y);
-    nokia_lcd_write_char(3, 2);
-    nokia_lcd_render();
+    tela.xTiro = 12;
+    desenhaTela(tela);
     _delay_ms(3000);
-    nokia_lcd_clear();
-    nokia_lcd_set_cursor(16, y);
-    nokia_lcd_write_char(3, 2);
-    nokia_lcd_render();
+    tela.xTiro = 16;
+    desenhaTela(tela);
+    _delay_ms(3000);
+    tela.xTiro = 20;
+    desenhaTela(tela);
 }
 
 void moveNave(int x, int y){
@@ -116,21 +121,37 @@ int main(void)
 
     nokia_lcd_custom(2, nave);
     nokia_lcd_custom(3, tiro);
+    objetosTela tela;
+    int x = 0; //Horizontal
+    int y = 0; //Vertical
+
+    int xTiro = 0;
+    int yTiro = 0;
+
+    tela.xPlayer = 0;
+    tela.yPlayer = 0;
+    tela.xTiro = 0;
+    tela.yTiro = 0;
+    tela.bTiro = 1;
+
+
     //lcd write p1: qual objeto | p2: qual o tamanho
 
     while (1) {
         if (PIND & (1 << PD7)){
-            if (y!=32) y+=4;
-            moveNave(x, y);
+            if (tela.yPlayer!=32) tela.yPlayer+=4;
+            desenhaTela(tela);
+            _delay_ms(100);
         }
 
         if (PIND & (1 << PD6)){
-            if (y!=0) y-=4;
-            moveNave(x, y);
+            if (tela.yPlayer!=0) tela.yPlayer-=4;
+            desenhaTela(tela);
+            _delay_ms(100);
         }
         
         if (PINB & (1 << PB0)){
-            tiroPlayer(y);
+            tiroPlayer(tela);
         }
 
         /*if (usuario apertar v){
