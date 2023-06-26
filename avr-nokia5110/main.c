@@ -84,7 +84,7 @@ objetosTela invocaInimigo(objetosTela tela){
     srand(time(NULL));
     int indexInimigo = tela.nOponentes;
 
-    if (indexInimigo >= 6)
+    if (indexInimigo >= 7)
     return tela;
 
     inimigo inimigoAtual;
