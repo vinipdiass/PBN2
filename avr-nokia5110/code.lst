@@ -207,7 +207,7 @@ Desmontagem da seção .text:
  356:	24 e0       	ldi	r18, 0x04	; 4
  358:	e2 0e       	add	r14, r18
  35a:	f1 1c       	adc	r15, r1
- 35c:	88 e5       	ldi	r24, 0x58	; 88
+ 35c:	80 e5       	ldi	r24, 0x50	; 80
  35e:	e8 16       	cp	r14, r24
  360:	f1 04       	cpc	r15, r1
  362:	11 f7       	brne	.-60     	; 0x328 <tiroPlayer+0x3a>
