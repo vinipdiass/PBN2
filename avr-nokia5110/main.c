@@ -144,11 +144,9 @@ objetosTela tiroPlayer(objetosTela tela){
     tela.bTiro = 1;
     tela.xTiro = 8;
     tela.yTiro = tela.yPlayer;
-    for (int i = 0; i<16; i++){
-        tela = desenhaTela(tela);
-        _delay_ms(30);
-        tela.xTiro += 4;
-    }
+    //for (int i = 0; i<16; i++){
+
+    //}
     tela.bTiro = 0;
     tela = desenhaTela(tela);
     return tela;
@@ -232,7 +230,7 @@ int main(void)
     tela.yTiro = 0;
     tela.bTiro = 0;
     tela.nOponentes = 0;
-
+    clock_t inicioTiro = clock();
 
     //lcd write p1: qual objeto | p2: qual o tamanho
 
@@ -251,8 +249,16 @@ int main(void)
         
         if (PINB & (1 << PB0)){
             tela = tiroPlayer(tela);
+            _delay_ms(100);
+            clock_t inicioTiro = clock();
         }
 
+        if (tela.bTiro == 1 && ((clock() - inicioTiro) / CLOCKS_PER_SEC) >= 3){
+            tela = desenhaTela(tela);
+            tela.xTiro += 4;
+            clock_t inicioTiro = clock();
+        }
+        
         /*if (usuario apertar v){
             x-=4;
             moveNave(x, y);
