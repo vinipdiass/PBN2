@@ -18,6 +18,7 @@
 #include "nokia5110.h"
 #include <avr/interrupt.h>
 #include <stdio.h>
+#include <time.h>
 
 uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 
@@ -25,7 +26,7 @@ uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 #define IRQ_FREQ		15625
 
 
-/*typedef struct{
+typedef struct{
     int x;
     int y;
     int xTiro;
@@ -33,7 +34,7 @@ uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
     int bTiro;
     int matrizX;
     int matrizY;
-}inimigo;*/
+}inimigo;
 
 typedef struct{
     int xPlayer;
@@ -41,13 +42,12 @@ typedef struct{
     int xTiro;
     int yTiro;
     int bTiro;
+    int nOponentes;
+    int matrizOponentes[2][4];
+    inimigo oponentes[8];
 }objetosTela;
-objetosTela tela = {0, 0, 0, 0, 0};
 
-
-
-
-
+objetosTela tela = {0, 0, 0, 0, 0, 0};
 
 int *xPlayer = &tela.xPlayer;
 int *yPlayer = &tela.yPlayer;
@@ -56,26 +56,46 @@ int *yTiro = &tela.yTiro;
 int *bTiro = &tela.bTiro;
 int cont = 0;
 
+time_t tempoGlobal;
+time_t tempoFinalTiro;
+time_t tempoInicialTiro;
+double diferenca;
+
 ISR(TIMER1_COMPA_vect) {
+    tempoFinalTiro = time(NULL);
+    diferenca = difftime(tempoFinalTiro, tempoInicialTiro);
     nokia_lcd_clear();
     //Desenha a nave
     nokia_lcd_set_cursor(tela.xPlayer, tela.yPlayer);
     nokia_lcd_write_char(2, 2);
+    //Desenha Tiro
     if (tela.bTiro == 1){
+        
+        //clock_t finalTiro = clock();
+        //double tempoQuePassou = (double)((inicioTiro - finalTiro) / CLOCKS_PER_SEC);
         nokia_lcd_set_cursor(tela.xTiro, tela.yTiro);
         nokia_lcd_write_char(3, 2);
-        if(cont == 100) {
+        if(diferenca >= 0.3) {
             tela.xTiro += 8;
             nokia_lcd_render();
             if(tela.xTiro == 80){
                tela.bTiro = 0;
             }
-            cont = 0;
+            diferenca = 0;
+            tempoInicialTiro = time(NULL);
         }
         
     }
+
+    /*if(contInimigos == 100) {
+        //Desenha inimigos
+        int xTiroMatriz = -1;
+        int yTiroMatriz = -1;
+    }*/
+
+
     nokia_lcd_render();
-    cont++;
+    //cont++;
 }
 
 
@@ -147,8 +167,11 @@ int main(void)
 
 
     //lcd write p1: qual objeto | p2: qual o tamanho
+    tempoGlobal = time(NULL);
+    tempoFinalTiro = time(NULL);
 
     while (1) {
+        
         if (PIND & (1 << PD7)){
             if (tela.yPlayer!=32) tela.yPlayer+=4;
             //desenhaTela(tela);
@@ -162,6 +185,7 @@ int main(void)
         }
         
         if (PINB & (1 << PB0)){
+            tempoInicialTiro = time(NULL);
             tela.bTiro = 1;
             tela.xTiro = 8;
             tela.yTiro = tela.yPlayer;
