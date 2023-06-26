@@ -57,6 +57,7 @@ void desenhaTela(objetosTela tela){
         nokia_lcd_write_char(3, 2);  
     }
 
+    /*
     //Teste: Desenha oponentes na tela inteira
     for (int i = 0; i < 4; i++){
         inimigo inimigoAtual = tela.oponentes[i];
@@ -65,14 +66,16 @@ void desenhaTela(objetosTela tela){
         nokia_lcd_set_cursor(56, i*12);
         nokia_lcd_write_char(4, 2); 
     }
-    /*
+    */
+    
+
     //Desenha oponentes
     for (int i = 0; i < tela.nOponentes; i++){
         inimigo inimigoAtual = tela.oponentes[i];
         nokia_lcd_set_cursor(inimigoAtual.x, inimigoAtual.y);
-        nokia_lcd_write_char(4, 1); 
+        nokia_lcd_write_char(4, 2); 
     }
-    */
+    
 
     nokia_lcd_render();
 }
@@ -81,18 +84,18 @@ objetosTela invocaInimigo(objetosTela tela){
     srand(time(NULL));
     int indexInimigo = tela.nOponentes;
 
-    if (indexInimigo >= 6)
+    if (indexInimigo >= 4)
     return tela;
 
     inimigo inimigoAtual;
     inimigoAtual.bTiro = 0;
     inimigoAtual.x = 68;
-    inimigoAtual.y = (rand() % 9) * 4;
+    inimigoAtual.y = (rand() % 4) * 4;
     //Se for igual ao Y de um outro inimigo já existente, faz dnv, n pode ter dois em um mesmo lugar
     for (int i = 0; i < tela.nOponentes; i++){
         if (inimigoAtual.y == tela.oponentes[i].y){
             i = 0;
-            inimigoAtual.y = (rand() % 9) * 4;
+            inimigoAtual.y = (rand() % 4) * 4;
         }
     }
     tela.oponentes[indexInimigo] = inimigoAtual;
