@@ -94,7 +94,7 @@ int main(void)
             0B0001000,
     };
 
-        uint8_t tiro[2] = {
+        uint8_t tiro[5] = {
             0B0011000,
             0B0011000,
             0B0011000,
