@@ -78,6 +78,7 @@ objetosTela desenhaTela(objetosTela tela){
                 for(int j = i; j < tela.nOponentes; j++){
                     tela.oponentes[j] = tela.oponentes[j+1];
                 }
+                tela.bTiro = 0;
                 //tela.oponentes[tela.nOponentes] = NULL;
             }
         }
