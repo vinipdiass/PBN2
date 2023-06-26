@@ -25,6 +25,16 @@ uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 #define IRQ_FREQ		15625
 
 
+/*typedef struct{
+    int x;
+    int y;
+    int xTiro;
+    int yTiro;
+    int bTiro;
+    int matrizX;
+    int matrizY;
+}inimigo;*/
+
 typedef struct{
     int xPlayer;
     int yPlayer;
@@ -32,41 +42,42 @@ typedef struct{
     int yTiro;
     int bTiro;
 }objetosTela;
+objetosTela tela = {0, 0, 0, 0, 0};
 
-void desenhaTela(objetosTela tela){
+
+
+
+
+
+int *xPlayer = &tela.xPlayer;
+int *yPlayer = &tela.yPlayer;
+int *xTiro = &tela.xTiro;
+int *yTiro = &tela.yTiro;
+int *bTiro = &tela.bTiro;
+int cont = 0;
+
+ISR(TIMER1_COMPA_vect) {
     nokia_lcd_clear();
     //Desenha a nave
     nokia_lcd_set_cursor(tela.xPlayer, tela.yPlayer);
     nokia_lcd_write_char(2, 2);
     if (tela.bTiro == 1){
         nokia_lcd_set_cursor(tela.xTiro, tela.yTiro);
-        nokia_lcd_write_char(3, 2);  
+        nokia_lcd_write_char(3, 2);
+        if(cont == 100) {
+            tela.xTiro += 8;
+            nokia_lcd_render();
+            if(tela.xTiro == 80){
+               tela.bTiro = 0;
+            }
+            cont = 0;
+        }
+        
     }
     nokia_lcd_render();
+    cont++;
 }
 
-void tiroPlayer(objetosTela tela){
-    tela.bTiro = 1;
-    tela.xTiro = 8;
-    tela.yTiro = tela.yPlayer;
-    for (int i = 0; i<17; i++){
-        desenhaTela(tela);
-        _delay_ms(30);
-        tela.xTiro += 4;
-    }
-}
-
-void moveNave(int x, int y){
-    nokia_lcd_clear();
-    nokia_lcd_set_cursor(x, y);
-    nokia_lcd_write_char(2, 2);
-    nokia_lcd_render();
-    _delay_ms(100);
-}
-
-ISR(TIMER1_COMPA_vect) {
-    // Aqui vai a função de animação dos disparos 
-}
 
 
 int main(void)
@@ -94,13 +105,21 @@ int main(void)
             0B0001000,
     };
 
-        uint8_t tiro[5] = {
+    uint8_t tiro[5] = {
             0B0001000,
             0B0001000,
             0B0001000,
             0B0001000,
             0B0001000,
     };
+
+    /*uint8_t invasor[5] = {
+            0B0010001,
+            0B0010101,
+            0B0001010,
+            0B0001110,
+            0B0010001,
+    };*/
 
     // Configuração do TIMER
     cli();
@@ -116,18 +135,15 @@ int main(void)
 
     nokia_lcd_custom(2, nave);
     nokia_lcd_custom(3, tiro);
-    objetosTela tela;
-    int x = 0; //Horizontal
-    int y = 0; //Vertical
 
-    int xTiro = 0;
-    int yTiro = 0;
+    
+    
+    //int x = 0; //Horizontal
+    //int y = 0; //Vertical
+    //int xTiro = 0;
+    //int yTiro = 0;
 
-    tela.xPlayer = 0;
-    tela.yPlayer = 0;
-    tela.xTiro = 0;
-    tela.yTiro = 0;
-    tela.bTiro = 0;
+    
 
 
     //lcd write p1: qual objeto | p2: qual o tamanho
@@ -135,18 +151,20 @@ int main(void)
     while (1) {
         if (PIND & (1 << PD7)){
             if (tela.yPlayer!=32) tela.yPlayer+=4;
-            desenhaTela(tela);
-            _delay_ms(100);
+            //desenhaTela(tela);
+            //_delay_ms(100);
         }
 
         if (PIND & (1 << PD6)){
             if (tela.yPlayer!=0) tela.yPlayer-=4;
-            desenhaTela(tela);
-            _delay_ms(100);
+            //desenhaTela(tela);
+            //_delay_ms(100);
         }
         
         if (PINB & (1 << PB0)){
-            tiroPlayer(tela);
+            tela.bTiro = 1;
+            tela.xTiro = 8;
+            tela.yTiro = tela.yPlayer;
         }
 
         /*if (usuario apertar v){
