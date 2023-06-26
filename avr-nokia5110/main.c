@@ -26,6 +26,23 @@ uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 int x = 0; //Horizontal
 int y = 0; //Vertical
 
+int xTiro = 0;
+int yTiro = 0;
+
+void tiroPlayer(int y){
+    nokia_lcd_set_cursor(4, y);
+    nokia_lcd_write_char(3, 2);
+    nokia_lcd_render();
+    _delay_ms(3000);
+    nokia_lcd_set_cursor(4, y+4);
+    nokia_lcd_write_char(3, 2);
+    nokia_lcd_render();
+    _delay_ms(3000);
+    nokia_lcd_set_cursor(4, y+8);
+    nokia_lcd_write_char(3, 2);
+    nokia_lcd_render();
+}
+
 void moveNave(int x, int y){
     nokia_lcd_clear();
     nokia_lcd_set_cursor(x, y);
@@ -64,6 +81,14 @@ int main(void)
             0B0001000,
     };
 
+        uint8_t tiro[5] = {
+            0B1111111,
+            0B1111111,
+            0B0011100,
+            0B1111111,
+            0B1111111,
+    };
+
     // Configuração do TIMER
     cli();
 	TCCR1A = 0;
@@ -77,6 +102,7 @@ int main(void)
     sei();
 
     nokia_lcd_custom(2, nave);
+    nokia_lcd_custom(3, tiro);
     //lcd write p1: qual objeto | p2: qual o tamanho
 
     while (1) {
