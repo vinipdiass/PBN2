@@ -975,7 +975,7 @@ Desmontagem da seção .text:
  99e:	0d 92       	st	X+, r0
  9a0:	8a 95       	dec	r24
  9a2:	e1 f7       	brne	.-8      	; 0x99c <main+0x36>
- 9a4:	83 e0       	ldi	r24, 0x03	; 3
+ 9a4:	88 e1       	ldi	r24, 0x18	; 24
  9a6:	88 8b       	std	Y+16, r24	; 0x10
  9a8:	89 8b       	std	Y+17, r24	; 0x11
  9aa:	f8 94       	cli

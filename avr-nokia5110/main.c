@@ -95,8 +95,11 @@ int main(void)
     };
 
         uint8_t tiro[2] = {
-            0B11,
-            0B11,
+            0B0011000,
+            0B0011000,
+            0B0011000,
+            0B0011000,
+            0B0011000,
     };
 
     // Configuração do TIMER
