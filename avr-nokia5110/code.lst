@@ -191,7 +191,7 @@ Desmontagem da seção .text:
      338:	0e 94 c7 05 	call	0xb8e	; 0xb8e <time>
      33c:	cb 01       	movw	r24, r22
      33e:	0e 94 12 09 	call	0x1224	; 0x1224 <srand>
-     342:	28 e0       	ldi	r18, 0x08	; 8
+     342:	26 e0       	ldi	r18, 0x06	; 6
      344:	e2 16       	cp	r14, r18
      346:	f1 04       	cpc	r15, r1
      348:	0c f0       	brlt	.+2      	; 0x34c <invocaInimigo+0x42>
