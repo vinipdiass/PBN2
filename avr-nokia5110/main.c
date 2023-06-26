@@ -51,7 +51,7 @@ void tiroPlayer(objetosTela tela){
     tela.yTiro = tela.yPlayer;
     for (int i = 0; i<17; i++){
         desenhaTela(tela);
-        _delay_ms(100);
+        _delay_ms(70);
         tela.xTiro += 4;
     }
 }
