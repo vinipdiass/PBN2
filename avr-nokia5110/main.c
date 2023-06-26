@@ -30,15 +30,17 @@ int xTiro = 0;
 int yTiro = 0;
 
 void tiroPlayer(int y){
-    nokia_lcd_set_cursor(4, y);
+    nokia_lcd_set_cursor(8, y);
     nokia_lcd_write_char(3, 2);
     nokia_lcd_render();
     _delay_ms(3000);
-    nokia_lcd_set_cursor(4, y+4);
+    nokia_lcd_clear();
+    nokia_lcd_set_cursor(12, y);
     nokia_lcd_write_char(3, 2);
     nokia_lcd_render();
     _delay_ms(3000);
-    nokia_lcd_set_cursor(4, y+8);
+    nokia_lcd_clear();
+    nokia_lcd_set_cursor(16, y);
     nokia_lcd_write_char(3, 2);
     nokia_lcd_render();
 }
@@ -115,13 +117,12 @@ int main(void)
             if (y!=0) y-=4;
             moveNave(x, y);
         }
-        /*
-        if (usuario apertar ^){
-            x+=4;
-            moveNave(x, y);
+        
+        if (PINB & (1 << PB0)){
+            tiroPlayer(y);
         }
 
-        if (usuario apertar v){
+        /*if (usuario apertar v){
             x-=4;
             moveNave(x, y);
         }
