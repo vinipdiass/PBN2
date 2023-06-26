@@ -16,8 +16,15 @@
 #include <util/delay.h>
 #include <stdlib.h>
 #include "nokia5110.h"
+#include <avr/interrupt.h>
+#include <stdio.h>
 
 uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
+
+#define TIMER_CLK		F_CPU / 1024
+#define IRQ_FREQ		15625
+int x = 0; //Horizontal
+int y = 0; //Vertical
 
 void moveNave(int x, int y){
     nokia_lcd_clear();
@@ -27,11 +34,13 @@ void moveNave(int x, int y){
     _delay_ms(100);
 }
 
+ISR(TIMER1_COMPA_vect) {
+    // Aqui vai a função de animação dos disparos 
+}
+
+
 int main(void)
 {
-    int x = 0; //Horizontal
-    int y = 0; //Vertical
-
     nokia_lcd_init();
     nokia_lcd_clear();
     nokia_lcd_custom(1, glyph);
@@ -42,21 +51,33 @@ int main(void)
     // nokia_lcd_render();
     // while(1);
 
-       // Entradas
+    // Entradas
     DDRD &= ~(1 << PD6); // Cima
     DDRD &= ~(1 << PD7); // Baixo
     DDRB &= ~(1 << PB0); // Atira
 
     uint8_t nave[8] = {
-        0B00000,
-        0B11011,
-        0B01010,
-        0B11111,
-        0B10001,
-        0B11011,
-        0B10101,
-        0B11111,
+        0B0001000,
+        0B0001000,
+        0B0011100,
+        0B1010101,
+        0B1100011,
+        0B0111110,
+        0B1111111,
+        0B0011100,
     };
+
+    // Configuração do TIMER
+    cli();
+	TCCR1A = 0;
+	TCCR1B = 0;
+	TCNT1  = 0;
+	OCR1A = (TIMER_CLK / IRQ_FREQ) - 1;
+	TCCR1B |= (1 << WGM12);
+	TCCR1B |= (1 << CS12) | (1 << CS10);  
+	TIMSK1 |= (1 << OCIE1A);
+    PORTC |= 1 << PC1;
+    sei();
 
     nokia_lcd_custom(2, nave);
     //lcd write p1: qual objeto | p2: qual o tamanho
