@@ -29,6 +29,17 @@ int y = 0; //Vertical
 int xTiro = 0;
 int yTiro = 0;
 
+typedef struct{
+    int xPlayer;
+    int yPlayer;
+    int xTiro;
+    int yTiro;
+}objetosTela;
+
+void desenhaTela(objetosTela tela){
+    
+}
+
 void tiroPlayer(int y){
     nokia_lcd_set_cursor(8, y);
     nokia_lcd_write_char(3, 2);
