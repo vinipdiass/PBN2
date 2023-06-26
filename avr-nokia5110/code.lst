@@ -878,7 +878,7 @@ Desmontagem da seção .text:
  8f0:	16 c0       	rjmp	.+44     	; 0x91e <__stack+0x1f>
  8f2:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <__data_end>
  8f6:	90 91 0b 01 	lds	r25, 0x010B	; 0x80010b <__data_end+0x1>
- 8fa:	84 32       	cpi	r24, 0x24	; 36
+ 8fa:	80 32       	cpi	r24, 0x20	; 32
  8fc:	91 05       	cpc	r25, r1
  8fe:	29 f0       	breq	.+10     	; 0x90a <__stack+0xb>
  900:	04 96       	adiw	r24, 0x04	; 4
