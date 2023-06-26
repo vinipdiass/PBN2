@@ -84,17 +84,19 @@ objetosTela invocaInimigo(objetosTela tela){
     srand(time(NULL));
     int indexInimigo = tela.nOponentes;
 
-    if (indexInimigo >= 4)
+    if (indexInimigo >= 8)
     return tela;
 
     inimigo inimigoAtual;
     inimigoAtual.bTiro = 0;
     inimigoAtual.x = 68;
+    inimigoAtual.x = 68 - ((rand() % 2) * 12);
     inimigoAtual.y = (rand() % 4) * 12;
     //Se for igual ao Y de um outro inimigo já existente, faz dnv, n pode ter dois em um mesmo lugar
     for (int i = 0; i < tela.nOponentes; i++){
-        if (inimigoAtual.y == tela.oponentes[i].y){
+        if (inimigoAtual.y == tela.oponentes[i].y && inimigoAtual.x == tela.oponentes[i].x){
             i = 0;
+            inimigoAtual.x = 68 - ((rand() % 2) * 12);
             inimigoAtual.y = (rand() % 4) * 12;
         }
     }
