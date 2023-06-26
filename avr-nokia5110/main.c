@@ -50,14 +50,18 @@ void desenhaTela(objetosTela tela){
     //Desenha a nave
     nokia_lcd_set_cursor(tela.xPlayer, tela.yPlayer);
     nokia_lcd_write_char(2, 2);
+
+    //Desenha o tiro do jogador
     if (tela.bTiro == 1){
         nokia_lcd_set_cursor(tela.xTiro, tela.yTiro);
         nokia_lcd_write_char(3, 2);  
     }
+
+    //Desenha oponentes
     for (int i = 0; i < tela.nOponentes; i++){
         inimigo inimigoAtual = tela.oponentes[i];
         nokia_lcd_set_cursor(inimigoAtual.x, inimigoAtual.y);
-        nokia_lcd_write_char(4, 2); 
+        nokia_lcd_write_char(4, 1); 
     }
 
     nokia_lcd_render();
@@ -91,11 +95,13 @@ objetosTela tiroPlayer(objetosTela tela){
     tela.bTiro = 1;
     tela.xTiro = 8;
     tela.yTiro = tela.yPlayer;
-    for (int i = 0; i<17; i++){
+    for (int i = 0; i<16; i++){
         desenhaTela(tela);
         _delay_ms(30);
         tela.xTiro += 4;
     }
+    tela.bTiro = 0;
+    desenhaTela(tela);
     return tela;
 }
 
