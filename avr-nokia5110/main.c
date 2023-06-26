@@ -61,7 +61,7 @@ void desenhaTela(objetosTela tela){
     for (int i = 0; i < 4; i++){
         inimigo inimigoAtual = tela.oponentes[i];
         nokia_lcd_set_cursor(68, i*12);
-        nokia_lcd_write_char(4, 2); 
+        nokia_lcd_write_char(4, 1); 
     }
     /*
     //Desenha oponentes
