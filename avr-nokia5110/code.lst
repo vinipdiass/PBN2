@@ -131,7 +131,7 @@ Desmontagem da seção .text:
      2be:	61 2f       	mov	r22, r17
      2c0:	84 e4       	ldi	r24, 0x44	; 68
      2c2:	0e 94 fc 03 	call	0x7f8	; 0x7f8 <nokia_lcd_set_cursor>
-     2c6:	62 e0       	ldi	r22, 0x02	; 2
+     2c6:	61 e0       	ldi	r22, 0x01	; 1
      2c8:	84 e0       	ldi	r24, 0x04	; 4
      2ca:	0e 94 41 03 	call	0x682	; 0x682 <nokia_lcd_write_char>
      2ce:	1c 5f       	subi	r17, 0xFC	; 252
