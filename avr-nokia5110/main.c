@@ -61,13 +61,13 @@ objetosTela desenhaTela(objetosTela tela){
         int xTiroMatriz = -1;
         int yTiroMatriz = -1;
 
-        if (tela.yTiro <= 12 ) yTiroMatriz = 0;
+        if (tela.yTiro < 12 ) yTiroMatriz = 0;
         else
-            if (tela.yTiro <= 24 ) yTiroMatriz = 1;
+            if (tela.yTiro < 24 ) yTiroMatriz = 1;
             else
-                if (tela.yTiro <= 36 ) yTiroMatriz = 2;
+                if (tela.yTiro < 36 ) yTiroMatriz = 2;
                 else
-                    if (tela.yTiro <= 48 ) yTiroMatriz = 3;
+                    if (tela.yTiro < 48 ) yTiroMatriz = 3;
         
         if (tela.xTiro == 68) xTiroMatriz = 0;
         if (tela.xTiro == 56) xTiroMatriz = 1;
