@@ -49,7 +49,7 @@ void tiroPlayer(objetosTela tela){
     tela.bTiro = 1;
     tela.xTiro = 8;
     tela.yTiro = tela.yPlayer;
-    for (int i = 0; i<18; i++){
+    for (int i = 0; i<17; i++){
         desenhaTela(tela);
         _delay_ms(100);
         tela.xTiro += 4;
@@ -94,12 +94,9 @@ int main(void)
             0B0001000,
     };
 
-        uint8_t tiro[5] = {
-            0B1111111,
-            0B1111111,
-            0B0011100,
-            0B1111111,
-            0B1111111,
+        uint8_t tiro[2] = {
+            0B11,
+            0B11,
     };
 
     // Configuração do TIMER
