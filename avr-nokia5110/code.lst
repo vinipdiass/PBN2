@@ -137,10 +137,10 @@ Desmontagem da seção .text:
      2ca:	f1 2c       	mov	r15, r1
      2cc:	06 5f       	subi	r16, 0xF6	; 246
      2ce:	1f 4f       	sbci	r17, 0xFF	; 255
-     2d0:	61 96       	adiw	r28, 0x11	; 17
+     2d0:	a5 96       	adiw	r28, 0x25	; 37
      2d2:	8e ad       	ldd	r24, Y+62	; 0x3e
      2d4:	9f ad       	ldd	r25, Y+63	; 0x3f
-     2d6:	61 97       	sbiw	r28, 0x11	; 17
+     2d6:	a5 97       	sbiw	r28, 0x25	; 37
      2d8:	e8 16       	cp	r14, r24
      2da:	f9 06       	cpc	r15, r25
      2dc:	6c f4       	brge	.+26     	; 0x2f8 <desenhaTela+0x72>
@@ -182,16 +182,16 @@ Desmontagem da seção .text:
      326:	cd b7       	in	r28, 0x3d	; 61
      328:	de b7       	in	r29, 0x3e	; 62
      32a:	6c 01       	movw	r12, r24
-     32c:	69 96       	adiw	r28, 0x19	; 25
+     32c:	ad 96       	adiw	r28, 0x2d	; 45
      32e:	ee ac       	ldd	r14, Y+62	; 0x3e
      330:	ff ac       	ldd	r15, Y+63	; 0x3f
-     332:	69 97       	sbiw	r28, 0x19	; 25
+     332:	ad 97       	sbiw	r28, 0x2d	; 45
      334:	80 e0       	ldi	r24, 0x00	; 0
      336:	90 e0       	ldi	r25, 0x00	; 0
      338:	0e 94 c7 05 	call	0xb8e	; 0xb8e <time>
      33c:	cb 01       	movw	r24, r22
      33e:	0e 94 12 09 	call	0x1224	; 0x1224 <srand>
-     342:	27 e0       	ldi	r18, 0x07	; 7
+     342:	28 e0       	ldi	r18, 0x08	; 8
      344:	e2 16       	cp	r14, r18
      346:	f1 04       	cpc	r15, r1
      348:	0c f0       	brlt	.+2      	; 0x34c <invocaInimigo+0x42>
@@ -315,11 +315,11 @@ Desmontagem da seção .text:
      444:	22 83       	std	Z+2, r18	; 0x02
      446:	11 86       	std	Z+9, r1	; 0x09
      448:	10 86       	std	Z+8, r1	; 0x08
-     44a:	69 96       	adiw	r28, 0x19	; 25
+     44a:	ad 96       	adiw	r28, 0x2d	; 45
      44c:	ff ae       	std	Y+63, r15	; 0x3f
      44e:	ee ae       	std	Y+62, r14	; 0x3e
-     450:	69 97       	sbiw	r28, 0x19	; 25
-     452:	88 e4       	ldi	r24, 0x48	; 72
+     450:	ad 97       	sbiw	r28, 0x2d	; 45
+     452:	8c e5       	ldi	r24, 0x5C	; 92
      454:	fe 01       	movw	r30, r28
      456:	71 96       	adiw	r30, 0x11	; 17
      458:	d6 01       	movw	r26, r12
@@ -360,7 +360,7 @@ Desmontagem da seção .text:
      49a:	7c 01       	movw	r14, r24
      49c:	8d b7       	in	r24, 0x3d	; 61
      49e:	9e b7       	in	r25, 0x3e	; 62
-     4a0:	88 54       	subi	r24, 0x48	; 72
+     4a0:	8c 55       	subi	r24, 0x5C	; 92
      4a2:	91 09       	sbc	r25, r1
      4a4:	0f b6       	in	r0, 0x3f	; 63
      4a6:	f8 94       	cli
@@ -370,7 +370,7 @@ Desmontagem da seção .text:
      4ae:	ad b7       	in	r26, 0x3d	; 61
      4b0:	be b7       	in	r27, 0x3e	; 62
      4b2:	11 96       	adiw	r26, 0x01	; 1
-     4b4:	88 e4       	ldi	r24, 0x48	; 72
+     4b4:	8c e5       	ldi	r24, 0x5C	; 92
      4b6:	fe 01       	movw	r30, r28
      4b8:	3d 96       	adiw	r30, 0x0d	; 13
      4ba:	01 90       	ld	r0, Z+
@@ -400,7 +400,7 @@ Desmontagem da seção .text:
      4ec:	cd 8a       	std	Y+21, r12	; 0x15
      4ee:	8d b7       	in	r24, 0x3d	; 61
      4f0:	9e b7       	in	r25, 0x3e	; 62
-     4f2:	88 54       	subi	r24, 0x48	; 72
+     4f2:	8c 55       	subi	r24, 0x5C	; 92
      4f4:	91 09       	sbc	r25, r1
      4f6:	0f b6       	in	r0, 0x3f	; 63
      4f8:	f8 94       	cli
@@ -410,7 +410,7 @@ Desmontagem da seção .text:
      500:	ad b7       	in	r26, 0x3d	; 61
      502:	be b7       	in	r27, 0x3e	; 62
      504:	11 96       	adiw	r26, 0x01	; 1
-     506:	88 e4       	ldi	r24, 0x48	; 72
+     506:	8c e5       	ldi	r24, 0x5C	; 92
      508:	fe 01       	movw	r30, r28
      50a:	3d 96       	adiw	r30, 0x0d	; 13
      50c:	01 90       	ld	r0, Z+
@@ -431,7 +431,7 @@ Desmontagem da seção .text:
      52c:	1f 4f       	sbci	r17, 0xFF	; 255
      52e:	8d b7       	in	r24, 0x3d	; 61
      530:	9e b7       	in	r25, 0x3e	; 62
-     532:	88 5b       	subi	r24, 0xB8	; 184
+     532:	84 5a       	subi	r24, 0xA4	; 164
      534:	9f 4f       	sbci	r25, 0xFF	; 255
      536:	0f b6       	in	r0, 0x3f	; 63
      538:	f8 94       	cli
@@ -445,7 +445,7 @@ Desmontagem da seção .text:
      548:	09 8b       	std	Y+17, r16	; 0x11
      54a:	1e 8a       	std	Y+22, r1	; 0x16
      54c:	1d 8a       	std	Y+21, r1	; 0x15
-     54e:	88 54       	subi	r24, 0x48	; 72
+     54e:	8c 55       	subi	r24, 0x5C	; 92
      550:	91 09       	sbc	r25, r1
      552:	0f b6       	in	r0, 0x3f	; 63
      554:	f8 94       	cli
@@ -455,7 +455,7 @@ Desmontagem da seção .text:
      55c:	ad b7       	in	r26, 0x3d	; 61
      55e:	be b7       	in	r27, 0x3e	; 62
      560:	11 96       	adiw	r26, 0x01	; 1
-     562:	88 e4       	ldi	r24, 0x48	; 72
+     562:	8c e5       	ldi	r24, 0x5C	; 92
      564:	fe 01       	movw	r30, r28
      566:	3d 96       	adiw	r30, 0x0d	; 13
      568:	01 90       	ld	r0, Z+
@@ -463,7 +463,7 @@ Desmontagem da seção .text:
      56c:	8a 95       	dec	r24
      56e:	e1 f7       	brne	.-8      	; 0x568 <tiroPlayer+0xe6>
      570:	0e 94 43 01 	call	0x286	; 0x286 <desenhaTela>
-     574:	88 e4       	ldi	r24, 0x48	; 72
+     574:	8c e5       	ldi	r24, 0x5C	; 92
      576:	fe 01       	movw	r30, r28
      578:	3d 96       	adiw	r30, 0x0d	; 13
      57a:	d7 01       	movw	r26, r14
@@ -1232,7 +1232,7 @@ Desmontagem da seção .text:
      bb6:	df 93       	push	r29
      bb8:	cd b7       	in	r28, 0x3d	; 61
      bba:	de b7       	in	r29, 0x3e	; 62
-     bbc:	c7 55       	subi	r28, 0x57	; 87
+     bbc:	cb 56       	subi	r28, 0x6B	; 107
      bbe:	d1 09       	sbc	r29, r1
      bc0:	0f b6       	in	r0, 0x3f	; 63
      bc2:	f8 94       	cli
@@ -1252,14 +1252,14 @@ Desmontagem da seção .text:
      be4:	e9 e0       	ldi	r30, 0x09	; 9
      be6:	f1 e0       	ldi	r31, 0x01	; 1
      be8:	de 01       	movw	r26, r28
-     bea:	ad 5a       	subi	r26, 0xAD	; 173
+     bea:	a9 59       	subi	r26, 0x99	; 153
      bec:	bf 4f       	sbci	r27, 0xFF	; 255
      bee:	01 90       	ld	r0, Z+
      bf0:	0d 92       	st	X+, r0
      bf2:	8a 95       	dec	r24
      bf4:	e1 f7       	brne	.-8      	; 0xbee <main+0x3a>
      bf6:	be 01       	movw	r22, r28
-     bf8:	6d 5a       	subi	r22, 0xAD	; 173
+     bf8:	69 59       	subi	r22, 0x99	; 153
      bfa:	7f 4f       	sbci	r23, 0xFF	; 255
      bfc:	82 e0       	ldi	r24, 0x02	; 2
      bfe:	0e 94 3a 04 	call	0x874	; 0x874 <nokia_lcd_custom>
@@ -1267,14 +1267,14 @@ Desmontagem da seção .text:
      c04:	ee e0       	ldi	r30, 0x0E	; 14
      c06:	f1 e0       	ldi	r31, 0x01	; 1
      c08:	de 01       	movw	r26, r28
-     c0a:	a2 5b       	subi	r26, 0xB2	; 178
+     c0a:	ae 59       	subi	r26, 0x9E	; 158
      c0c:	bf 4f       	sbci	r27, 0xFF	; 255
      c0e:	01 90       	ld	r0, Z+
      c10:	0d 92       	st	X+, r0
      c12:	8a 95       	dec	r24
      c14:	e1 f7       	brne	.-8      	; 0xc0e <main+0x5a>
      c16:	be 01       	movw	r22, r28
-     c18:	62 5b       	subi	r22, 0xB2	; 178
+     c18:	6e 59       	subi	r22, 0x9E	; 158
      c1a:	7f 4f       	sbci	r23, 0xFF	; 255
      c1c:	83 e0       	ldi	r24, 0x03	; 3
      c1e:	0e 94 3a 04 	call	0x874	; 0x874 <nokia_lcd_custom>
@@ -1282,14 +1282,14 @@ Desmontagem da seção .text:
      c24:	e3 e1       	ldi	r30, 0x13	; 19
      c26:	f1 e0       	ldi	r31, 0x01	; 1
      c28:	de 01       	movw	r26, r28
-     c2a:	a7 5b       	subi	r26, 0xB7	; 183
+     c2a:	a3 5a       	subi	r26, 0xA3	; 163
      c2c:	bf 4f       	sbci	r27, 0xFF	; 255
      c2e:	01 90       	ld	r0, Z+
      c30:	0d 92       	st	X+, r0
      c32:	8a 95       	dec	r24
      c34:	e1 f7       	brne	.-8      	; 0xc2e <main+0x7a>
      c36:	be 01       	movw	r22, r28
-     c38:	67 5b       	subi	r22, 0xB7	; 183
+     c38:	63 5a       	subi	r22, 0xA3	; 163
      c3a:	7f 4f       	sbci	r23, 0xFF	; 255
      c3c:	84 e0       	ldi	r24, 0x04	; 4
      c3e:	0e 94 3a 04 	call	0x874	; 0x874 <nokia_lcd_custom>
@@ -1319,10 +1319,10 @@ Desmontagem da seção .text:
      c88:	1f 82       	std	Y+7, r1	; 0x07
      c8a:	1a 86       	std	Y+10, r1	; 0x0a
      c8c:	19 86       	std	Y+9, r1	; 0x09
-     c8e:	29 96       	adiw	r28, 0x09	; 9
+     c8e:	6d 96       	adiw	r28, 0x1d	; 29
      c90:	1f ae       	std	Y+63, r1	; 0x3f
      c92:	1e ae       	std	Y+62, r1	; 0x3e
-     c94:	29 97       	sbiw	r28, 0x09	; 9
+     c94:	6d 97       	sbiw	r28, 0x1d	; 29
      c96:	00 e0       	ldi	r16, 0x00	; 0
      c98:	10 e0       	ldi	r17, 0x00	; 0
      c9a:	4f 9b       	sbis	0x09, 7	; 9
@@ -1336,7 +1336,7 @@ Desmontagem da seção .text:
      caa:	0b 83       	std	Y+3, r16	; 0x03
      cac:	8d b7       	in	r24, 0x3d	; 61
      cae:	9e b7       	in	r25, 0x3e	; 62
-     cb0:	88 54       	subi	r24, 0x48	; 72
+     cb0:	8c 55       	subi	r24, 0x5C	; 92
      cb2:	91 09       	sbc	r25, r1
      cb4:	0f b6       	in	r0, 0x3f	; 63
      cb6:	f8 94       	cli
@@ -1346,7 +1346,7 @@ Desmontagem da seção .text:
      cbe:	ad b7       	in	r26, 0x3d	; 61
      cc0:	be b7       	in	r27, 0x3e	; 62
      cc2:	11 96       	adiw	r26, 0x01	; 1
-     cc4:	88 e4       	ldi	r24, 0x48	; 72
+     cc4:	8c e5       	ldi	r24, 0x5C	; 92
      cc6:	fe 01       	movw	r30, r28
      cc8:	31 96       	adiw	r30, 0x01	; 1
      cca:	01 90       	ld	r0, Z+
@@ -1379,7 +1379,7 @@ Desmontagem da seção .text:
      d02:	0b 83       	std	Y+3, r16	; 0x03
      d04:	8d b7       	in	r24, 0x3d	; 61
      d06:	9e b7       	in	r25, 0x3e	; 62
-     d08:	88 54       	subi	r24, 0x48	; 72
+     d08:	8c 55       	subi	r24, 0x5C	; 92
      d0a:	91 09       	sbc	r25, r1
      d0c:	0f b6       	in	r0, 0x3f	; 63
      d0e:	f8 94       	cli
@@ -1389,7 +1389,7 @@ Desmontagem da seção .text:
      d16:	ad b7       	in	r26, 0x3d	; 61
      d18:	be b7       	in	r27, 0x3e	; 62
      d1a:	11 96       	adiw	r26, 0x01	; 1
-     d1c:	88 e4       	ldi	r24, 0x48	; 72
+     d1c:	8c e5       	ldi	r24, 0x5C	; 92
      d1e:	fe 01       	movw	r30, r28
      d20:	31 96       	adiw	r30, 0x01	; 1
      d22:	01 90       	ld	r0, Z+
@@ -1417,7 +1417,7 @@ Desmontagem da seção .text:
      d50:	0b 83       	std	Y+3, r16	; 0x03
      d52:	8d b7       	in	r24, 0x3d	; 61
      d54:	9e b7       	in	r25, 0x3e	; 62
-     d56:	88 54       	subi	r24, 0x48	; 72
+     d56:	8c 55       	subi	r24, 0x5C	; 92
      d58:	91 09       	sbc	r25, r1
      d5a:	0f b6       	in	r0, 0x3f	; 63
      d5c:	f8 94       	cli
@@ -1427,7 +1427,7 @@ Desmontagem da seção .text:
      d64:	ad b7       	in	r26, 0x3d	; 61
      d66:	be b7       	in	r27, 0x3e	; 62
      d68:	11 96       	adiw	r26, 0x01	; 1
-     d6a:	88 e4       	ldi	r24, 0x48	; 72
+     d6a:	8c e5       	ldi	r24, 0x5C	; 92
      d6c:	fe 01       	movw	r30, r28
      d6e:	31 96       	adiw	r30, 0x01	; 1
      d70:	01 90       	ld	r0, Z+

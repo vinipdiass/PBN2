@@ -41,8 +41,9 @@ typedef struct{
     int xTiro;
     int yTiro;
     int bTiro;
-    inimigo oponentes[6];
+    inimigo oponentes[8];
     int nOponentes;
+    //int matrizOponentes[][];
 }objetosTela;
 
 void desenhaTela(objetosTela tela){
@@ -54,7 +55,8 @@ void desenhaTela(objetosTela tela){
     //Desenha o tiro do jogador
     if (tela.bTiro == 1){
         nokia_lcd_set_cursor(tela.xTiro, tela.yTiro);
-        nokia_lcd_write_char(3, 2);  
+        nokia_lcd_write_char(3, 2);
+        //if (tela.xTiro == && tela.yTiro)
     }
 
     /*
@@ -84,7 +86,7 @@ objetosTela invocaInimigo(objetosTela tela){
     srand(time(NULL));
     int indexInimigo = tela.nOponentes;
 
-    if (indexInimigo >= 7)
+    if (indexInimigo >= 8)
     return tela;
 
     inimigo inimigoAtual;
