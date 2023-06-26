@@ -49,16 +49,11 @@ void tiroPlayer(objetosTela tela){
     tela.bTiro = 1;
     tela.xTiro = 8;
     tela.yTiro = tela.yPlayer;
-    desenhaTela(tela);
-    _delay_ms(3000);
-    tela.xTiro = 12;
-    desenhaTela(tela);
-    _delay_ms(3000);
-    tela.xTiro = 16;
-    desenhaTela(tela);
-    _delay_ms(3000);
-    tela.xTiro = 20;
-    desenhaTela(tela);
+    for (int i = 0; i<8; i++){
+        desenhaTela(tela);
+        _delay_ms(500);
+        tela.xTiro += 4;
+    }
 }
 
 void moveNave(int x, int y){
@@ -132,7 +127,7 @@ int main(void)
     tela.yPlayer = 0;
     tela.xTiro = 0;
     tela.yTiro = 0;
-    tela.bTiro = 1;
+    tela.bTiro = 0;
 
 
     //lcd write p1: qual objeto | p2: qual o tamanho
