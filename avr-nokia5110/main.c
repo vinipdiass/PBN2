@@ -49,9 +49,9 @@ void tiroPlayer(objetosTela tela){
     tela.bTiro = 1;
     tela.xTiro = 8;
     tela.yTiro = tela.yPlayer;
-    for (int i = 0; i<8; i++){
+    for (int i = 0; i<16; i++){
         desenhaTela(tela);
-        _delay_ms(500);
+        _delay_ms(100);
         tela.xTiro += 4;
     }
 }
