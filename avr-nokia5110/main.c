@@ -33,6 +33,8 @@ typedef struct{
     int xTiro;
     int yTiro;
     int bTiro;
+    int matrizX;
+    int matrizY;
 }inimigo;
 
 typedef struct{
@@ -43,10 +45,10 @@ typedef struct{
     int bTiro;
     inimigo oponentes[8];
     int nOponentes;
-    //int matrizOponentes[][];
+    int matrizOponentes[2][4];
 }objetosTela;
 
-void desenhaTela(objetosTela tela){
+objetosTela desenhaTela(objetosTela tela){
     nokia_lcd_clear();
     //Desenha a nave
     nokia_lcd_set_cursor(tela.xPlayer, tela.yPlayer);
@@ -56,7 +58,29 @@ void desenhaTela(objetosTela tela){
     if (tela.bTiro == 1){
         nokia_lcd_set_cursor(tela.xTiro, tela.yTiro);
         nokia_lcd_write_char(3, 2);
-        //if (tela.xTiro == && tela.yTiro)
+        int xTiroMatriz = -1;
+        int yTiroMatriz = -1;
+
+        if (tela.yTiro <= 12 ) yTiroMatriz = 0;
+        else
+            if (tela.yTiro <= 24 ) yTiroMatriz = 1;
+            else
+                if (tela.yTiro <= 36 ) yTiroMatriz = 2;
+                else
+                    if (tela.yTiro <= 48 ) yTiroMatriz = 3;
+        
+        if (tela.xTiro == 68) xTiroMatriz = 0;
+        if (tela.xTiro == 56) xTiroMatriz = 1;
+        
+        for (int i = 0; i < tela.nOponentes; i++){
+            if ((xTiroMatriz == tela.oponentes[i].matrizX) && (yTiroMatriz == tela.oponentes[i].matrizY)){
+                tela.nOponentes--;
+                for(int j = i; j < tela.nOponentes; j++){
+                    tela.oponentes[j] = tela.oponentes[j+1];
+                }
+                //tela.oponentes[tela.nOponentes] = NULL;
+            }
+        }
     }
 
     /*
@@ -80,6 +104,7 @@ void desenhaTela(objetosTela tela){
     
 
     nokia_lcd_render();
+    return tela;
 }
 
 objetosTela invocaInimigo(objetosTela tela){
@@ -91,17 +116,24 @@ objetosTela invocaInimigo(objetosTela tela){
 
     inimigo inimigoAtual;
     inimigoAtual.bTiro = 0;
-    inimigoAtual.x = 68 - ((rand() % 2) * 12);
-    inimigoAtual.y = (rand() % 4) * 12;
+
+    inimigoAtual.matrizX = (rand() % 2);
+    inimigoAtual.x = 68 - (inimigoAtual.matrizX * 12);
+    inimigoAtual.matrizY = rand() % 4;
+    inimigoAtual.y = inimigoAtual.matrizY * 12;
+
     //Se for igual ao Y e X de um outro inimigo já existente, faz dnv, n pode ter dois em um mesmo lugar
     for (int i = 0; i < tela.nOponentes; i++){
         if (inimigoAtual.y == tela.oponentes[i].y && inimigoAtual.x == tela.oponentes[i].x){
             i = 0;
-            inimigoAtual.x = 68 - ((rand() % 2) * 12);
-            inimigoAtual.y = (rand() % 4) * 12;
+            inimigoAtual.matrizX = (rand() % 2);
+            inimigoAtual.x = 68 - (inimigoAtual.matrizX * 12);
+            inimigoAtual.matrizY = rand() % 4;
+            inimigoAtual.y = inimigoAtual.matrizY * 12;
         }
     }
     tela.oponentes[indexInimigo] = inimigoAtual;
+    tela.matrizOponentes[inimigoAtual.matrizX][inimigoAtual.matrizY] = 1;
     tela.nOponentes++;
     return tela;
 }
@@ -112,12 +144,12 @@ objetosTela tiroPlayer(objetosTela tela){
     tela.xTiro = 8;
     tela.yTiro = tela.yPlayer;
     for (int i = 0; i<16; i++){
-        desenhaTela(tela);
+        tela = desenhaTela(tela);
         _delay_ms(30);
         tela.xTiro += 4;
     }
     tela.bTiro = 0;
-    desenhaTela(tela);
+    tela = desenhaTela(tela);
     return tela;
 }
 
@@ -206,13 +238,13 @@ int main(void)
     while (1) {
         if (PIND & (1 << PD7)){
             if (tela.yPlayer!=32) tela.yPlayer+=4;
-            desenhaTela(tela);
+            tela = desenhaTela(tela);
             _delay_ms(100);
         }
 
         if (PIND & (1 << PD6)){
             if (tela.yPlayer!=0) tela.yPlayer-=4;
-            desenhaTela(tela);
+            tela = desenhaTela(tela);
             _delay_ms(100);
         }
         
