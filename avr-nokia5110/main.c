@@ -166,8 +166,6 @@ void moveNave(int x, int y){
 ISR(TIMER1_COMPA_vect) {
     tempo++;
 
-    if (tempo % 15000 == 0)
-    tela = invocaInimigo(tela); 
 }
 
 
@@ -251,6 +249,9 @@ int main(void)
 
     //if(PIND & (1 << PD7) || PIND & (1 << PD6) || PINB & (1 << PB0)) {
         while (1) {
+            if (tempo % 15000 == 0)
+             tela = invocaInimigo(tela); 
+             
             if (PIND & (1 << PD7)){
                 if (tela.yPlayer!=32) tela.yPlayer+=4;
                 tela = desenhaTela(tela);
