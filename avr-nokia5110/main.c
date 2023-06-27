@@ -130,9 +130,9 @@ objetosTela desenhaTela(objetosTela tela){
                 tempo = 0;
                 //tela.oponentes[tela.nOponentes] = NULL;
             }
-        }
+        }*/
     }
-    */
+    
     /*
     //Teste: Desenha oponentes na tela inteira
     for (int i = 0; i < 4; i++){
@@ -338,7 +338,7 @@ int main(void)
             if (avancoInimigos >= 10000 && tela.bTiroInimigos == 0){
                 tela.bTiroInimigos = 1;
                 for (int k = 0; k < tela.nOponentes; k++){
-                    tela = tiroInimigos(tela, tela.oponentes[k]);
+                    tela = tiroInimigos(tela, k);
                 }
                 tela = desenhaTela(tela);
                 avancoInimigos = 0;
