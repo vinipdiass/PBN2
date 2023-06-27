@@ -130,9 +130,9 @@ objetosTela desenhaTela(objetosTela tela){
                 tempo = 0;
                 //tela.oponentes[tela.nOponentes] = NULL;
             }
-        }
+        }*/
     }
-    */
+    
     /*
     //Teste: Desenha oponentes na tela inteira
     for (int i = 0; i < 4; i++){
@@ -154,6 +154,17 @@ objetosTela desenhaTela(objetosTela tela){
     
 
     nokia_lcd_render();
+    return tela;
+}
+
+objetosTela tiroPlayer(objetosTela tela){
+    tela.bTiro = 1;
+    tela.xTiro = 8;
+    tela.yTiro = tela.yPlayer;
+    //for (int i = 0; i<16; i++){
+    //}
+    //tela.bTiro = 0;
+    tela = desenhaTela(tela);
     return tela;
 }
 
@@ -189,16 +200,7 @@ objetosTela invocaInimigo(objetosTela tela){
     return tela;
 }
 
-objetosTela tiroPlayer(objetosTela tela){
-    tela.bTiro = 1;
-    tela.xTiro = 8;
-    tela.yTiro = tela.yPlayer;
-    //for (int i = 0; i<16; i++){
-    //}
-    //tela.bTiro = 0;
-    tela = desenhaTela(tela);
-    return tela;
-}
+
 
 objetosTela tiroInimigos(objetosTela tela, int k){
     tela.oponentes[k].bTiro = 1;
@@ -224,7 +226,7 @@ ISR(TIMER1_COMPA_vect) {
 }
 
 
-int main(void)
+void main()
 {
     nokia_lcd_init();
     nokia_lcd_clear();
@@ -337,7 +339,7 @@ int main(void)
             if (avancoInimigos >= 10000 && tela.bTiroInimigos == 0){
                 tela.bTiroInimigos = 1;
                 for (int k = 0; k < tela.nOponentes; k++){
-                    tela = tiroInimigos(tela, tela.oponentes[k]);
+                    tela = tiroInimigos(tela, k);
                 }
                 tela = desenhaTela(tela);
                 avancoInimigos = 0;
@@ -346,7 +348,7 @@ int main(void)
 
 
             if (tela.bTiroInimigos == 1 && avancoInimigos >= 3000){
-                for (int k = 0; k < tela.oponentes; k++){
+                for (int k = 0; k < tela.nOponentes; k++){
                     tela.oponentes[k].xTiro -= 4;
                 }
                 tela.tiroFimInimigos++;
@@ -374,4 +376,6 @@ int main(void)
             }
         }
     //}
+
+    //return 0;
 }
