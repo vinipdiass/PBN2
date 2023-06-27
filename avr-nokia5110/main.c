@@ -145,6 +145,7 @@ objetosTela invocaInimigo(objetosTela tela){
 }
 
 void derrota(){
+    
     nokia_lcd_clear();
     nokia_lcd_write_string("Derrota!",1);
     nokia_lcd_set_cursor(0, 12);
@@ -152,6 +153,7 @@ void derrota(){
     nokia_lcd_set_cursor(0, 24);
     nokia_lcd_write_string("invadiram!", 1);
     nokia_lcd_render();
+    while (1){}
 }
 
 objetosTela tiroPlayer(objetosTela tela){
@@ -270,6 +272,7 @@ int main(void)
             
 
         if (tela.nOponentes == 8){
+            _delay_ms(1000);
             derrota();
         }
 
