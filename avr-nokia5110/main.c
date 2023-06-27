@@ -233,46 +233,36 @@ int main(void)
     clock_t inicioTiro = clock();
 
     //lcd write p1: qual objeto | p2: qual o tamanho
+    /*nokia_lcd_write_string("Defenda a Terra!",1);
+    nokia_lcd_set_cursor(0, 12);
+    nokia_lcd_write_string("Aperte para Começar", 2);
+    nokia_lcd_render();*/
 
-    while (1) {
-        if (PIND & (1 << PD7)){
-            if (tela.yPlayer!=32) tela.yPlayer+=4;
-            tela = desenhaTela(tela);
-            _delay_ms(100);
-        }
+    if(PIND & (1 << PD7) || PIND & (1 << PD6) || PINB & (1 << PB0)) {
+        while (1) {
+            if (PIND & (1 << PD7)){
+                if (tela.yPlayer!=32) tela.yPlayer+=4;
+                tela = desenhaTela(tela);
+                _delay_ms(100);
+            }
 
-        if (PIND & (1 << PD6)){
-            if (tela.yPlayer!=0) tela.yPlayer-=4;
-            tela = desenhaTela(tela);
-            _delay_ms(100);
-        }
+            if (PIND & (1 << PD6)){
+                if (tela.yPlayer!=0) tela.yPlayer-=4;
+                tela = desenhaTela(tela);
+                _delay_ms(100);
+            }
         
-        if (PINB & (1 << PB0)){
-            tela = tiroPlayer(tela);
-            _delay_ms(100);
-            clock_t inicioTiro = clock();
-        }
+            if (PINB & (1 << PB0)){
+                tela = tiroPlayer(tela);
+                _delay_ms(100);
+                clock_t inicioTiro = clock();
+            }
 
-        if (tela.bTiro == 1 && ((clock() - inicioTiro) / CLOCKS_PER_SEC) >= 3){
-            tela = desenhaTela(tela);
-            tela.xTiro += 4;
-            clock_t inicioTiro = clock();
+            if (tela.bTiro == 1 && ((clock() - inicioTiro) / CLOCKS_PER_SEC) >= 3){
+                tela = desenhaTela(tela);
+                tela.xTiro += 4;
+                clock_t inicioTiro = clock();
+            }
         }
-        
-        /*if (usuario apertar v){
-            x-=4;
-            moveNave(x, y);
-        }
-
-        if (usuario apertar >){
-            y+=4;
-            moveNave(x, y);
-        }
-
-        if (usuario apertar <){
-            y-=4;
-            moveNave(x, y);
-        }
-        */
     }
 }
