@@ -143,9 +143,8 @@ objetosTela tiroPlayer(objetosTela tela){
     tela.xTiro = 8;
     tela.yTiro = tela.yPlayer;
     //for (int i = 0; i<16; i++){
-
     //}
-    tela.bTiro = 0;
+    //tela.bTiro = 0;
     tela = desenhaTela(tela);
     return tela;
 }
