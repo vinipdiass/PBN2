@@ -272,7 +272,7 @@ int main(void)
     nokia_lcd_set_cursor(0, 24);
     nokia_lcd_write_string("Aperte para", 1);
     nokia_lcd_set_cursor(0, 36);
-    nokia_lcd_write_string("Começar", 1);
+    nokia_lcd_write_string("Comecar", 1);
     nokia_lcd_render();
 
     while(1) {
