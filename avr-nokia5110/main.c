@@ -276,6 +276,7 @@ int main(void)
                 if (tiroFim == 16){
                     tela.bTiro = 0;
                     tiroFim = 0;
+                    inicioTiro = 0;
                 }
             }
         }
