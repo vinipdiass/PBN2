@@ -277,6 +277,7 @@ int main(void)
                     tela.bTiro = 0;
                     tiroFim = 0;
                     inicioTiro = 0;
+                    tempo = 0;
                 }
             }
         }
