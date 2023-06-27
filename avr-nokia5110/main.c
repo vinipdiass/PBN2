@@ -49,6 +49,7 @@ typedef struct{
     int nOponentes;
     int matrizOponentes[2][4];
     int tiroFim;
+    int dificuldade;
 }objetosTela;
 
 objetosTela desenhaTela(objetosTela tela){
@@ -80,6 +81,7 @@ objetosTela desenhaTela(objetosTela tela){
             if ((xTiroMatriz == tela.oponentes[i].matrizX) && (yTiroMatriz == tela.oponentes[i].matrizY)){
                 tela.nOponentes--;
                 pontos++;
+                tela.dificuldade -= (tela.dificuldade * 0.1);
                 for(int j = i; j < tela.nOponentes; j++){
                     tela.oponentes[j] = tela.oponentes[j+1];
                 }
@@ -261,6 +263,7 @@ int main(void)
     //marcaTiro = clock();
     //double tempoTiro = 0;
     tela.tiroFim = 0;
+    tela.dificuldade = 4500;
     //lcd write p1: qual objeto | p2: qual o tamanho
     nokia_lcd_write_string("Defenda a Terra!",1);
     nokia_lcd_set_cursor(0, 12);
@@ -272,10 +275,10 @@ int main(void)
     }
 
     while (1) {
-        if (tempo > 45000 == 0){
+
+        if (tempo % tela.dificuldade == 0){
             tela = invocaInimigo(tela); 
             tela = desenhaTela(tela);
-            tempo = 0;
         }
             
 
