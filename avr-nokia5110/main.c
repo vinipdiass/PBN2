@@ -280,7 +280,7 @@ int main(void)
                 tela.xTiro += 4;
                 inicioTiro = 1;
                 tela.tiroFim++;
-                if (tela.tiroFim == 16){
+                if (tela.tiroFim == 20){
                     tela.bTiro = 0;
                     tela.tiroFim = 0;
                     inicioTiro = 0;
