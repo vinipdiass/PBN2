@@ -26,6 +26,7 @@ uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 #define IRQ_FREQ		15625
 
 long tempo = 0;
+long inicioTiro = 0;
 
 typedef struct{
     int x;
@@ -81,6 +82,8 @@ objetosTela desenhaTela(objetosTela tela){
                 }
                 tela.bTiro = 0;
                 tela.tiroFim = 0;
+                inicioTiro = 0;
+                tempo = 0;
                 //tela.oponentes[tela.nOponentes] = NULL;
             }
         }
@@ -233,7 +236,7 @@ int main(void)
     tela.yTiro = 0;
     tela.bTiro = 0;
     tela.nOponentes = 0;
-    long inicioTiro = 0;
+    inicioTiro = 0;
     long marcaTiro;
     //marcaTiro = clock();
     //double tempoTiro = 0;
