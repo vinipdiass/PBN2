@@ -231,6 +231,8 @@ int main(void)
     tela.bTiro = 0;
     tela.nOponentes = 0;
     clock_t inicioTiro;
+    clock_t marcaTiro;
+    double tempoTiro;
 
     //lcd write p1: qual objeto | p2: qual o tamanho
     /*nokia_lcd_write_string("Defenda a Terra!",1);
@@ -258,7 +260,9 @@ int main(void)
                 inicioTiro = clock();
             }
 
-            if (tela.bTiro == 1 && (((double)(clock() - inicioTiro) / CLOCKS_PER_SEC)) >= 3){
+            marcaTiro = clock();
+            tempoTiro = (double)(marcaTiro - inicioTiro) / CLOCKS_PER_SEC;
+            if (tela.bTiro == 1 && tempoTiro >= 3){
                 tela = desenhaTela(tela);
                 tela.xTiro += 4;
                 inicioTiro = clock();
