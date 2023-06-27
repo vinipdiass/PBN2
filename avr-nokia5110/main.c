@@ -144,6 +144,16 @@ objetosTela invocaInimigo(objetosTela tela){
     return tela;
 }
 
+void derrota(){
+    nokia_lcd_clear();
+    nokia_lcd_write_string("Derrota!",1);
+    nokia_lcd_set_cursor(0, 12);
+    nokia_lcd_write_string("Os aliens", 1);
+    nokia_lcd_set_cursor(0, 24);
+    nokia_lcd_write_string("invadiram!", 1);
+    nokia_lcd_render();
+}
+
 objetosTela tiroPlayer(objetosTela tela){
     tela.bTiro = 1;
     tela.xTiro = 8;
@@ -255,6 +265,11 @@ int main(void)
     while (1) {
         if (tempo % 45000 == 0)
             tela = invocaInimigo(tela); 
+
+        if (tela.nOponentes == 8){
+            derrota();
+        }
+
         if (PIND & (1 << PD7)){
             if (tela.yPlayer!=32) tela.yPlayer+=4;
             tela = desenhaTela(tela);
