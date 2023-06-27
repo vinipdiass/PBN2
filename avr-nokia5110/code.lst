@@ -81,13 +81,13 @@ Desmontagem da seção .text:
      25e:	02 c0       	rjmp	.+4      	; 0x264 <__do_copy_data+0x10>
      260:	05 90       	lpm	r0, Z+
      262:	0d 92       	st	X+, r0
-     264:	a8 36       	cpi	r26, 0x68	; 104
+     264:	a6 36       	cpi	r26, 0x66	; 102
      266:	b1 07       	cpc	r27, r17
      268:	d9 f7       	brne	.-10     	; 0x260 <__do_copy_data+0xc>
 
 0000026a <__do_clear_bss>:
      26a:	23 e0       	ldi	r18, 0x03	; 3
-     26c:	a8 e6       	ldi	r26, 0x68	; 104
+     26c:	a6 e6       	ldi	r26, 0x66	; 102
      26e:	b1 e0       	ldi	r27, 0x01	; 1
      270:	01 c0       	rjmp	.+2      	; 0x274 <.do_clear_bss_start>
 
@@ -95,7 +95,7 @@ Desmontagem da seção .text:
      272:	1d 92       	st	X+, r1
 
 00000274 <.do_clear_bss_start>:
-     274:	a0 3b       	cpi	r26, 0xB0	; 176
+     274:	ae 3a       	cpi	r26, 0xAE	; 174
      276:	b2 07       	cpc	r27, r18
      278:	e1 f7       	brne	.-8      	; 0x272 <.do_clear_bss_loop>
      27a:	0e 94 e1 06 	call	0xdc2	; 0xdc2 <main>
@@ -247,11 +247,11 @@ Desmontagem da seção .text:
      3a6:	48 c0       	rjmp	.+144    	; 0x438 <__EEPROM_REGION_LENGTH__+0x38>
      3a8:	01 50       	subi	r16, 0x01	; 1
      3aa:	11 09       	sbc	r17, r1
-     3ac:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <__data_end>
-     3b0:	90 91 69 01 	lds	r25, 0x0169	; 0x800169 <__data_end+0x1>
+     3ac:	80 91 66 01 	lds	r24, 0x0166	; 0x800166 <__data_end>
+     3b0:	90 91 67 01 	lds	r25, 0x0167	; 0x800167 <__data_end+0x1>
      3b4:	01 96       	adiw	r24, 0x01	; 1
-     3b6:	90 93 69 01 	sts	0x0169, r25	; 0x800169 <__data_end+0x1>
-     3ba:	80 93 68 01 	sts	0x0168, r24	; 0x800168 <__data_end>
+     3b6:	90 93 67 01 	sts	0x0167, r25	; 0x800167 <__data_end+0x1>
+     3ba:	80 93 66 01 	sts	0x0166, r24	; 0x800166 <__data_end>
      3be:	b2 01       	movw	r22, r4
      3c0:	55 0c       	add	r5, r5
      3c2:	88 0b       	sbc	r24, r24
@@ -289,14 +289,14 @@ Desmontagem da seção .text:
      40a:	e1 f7       	brne	.-8      	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
      40c:	40 96       	adiw	r24, 0x10	; 16
      40e:	f0 cf       	rjmp	.-32     	; 0x3f0 <desenhaTela+0x16a>
-     410:	10 92 6a 01 	sts	0x016A, r1	; 0x80016a <inicioTiro>
-     414:	10 92 6b 01 	sts	0x016B, r1	; 0x80016b <inicioTiro+0x1>
-     418:	10 92 6c 01 	sts	0x016C, r1	; 0x80016c <inicioTiro+0x2>
-     41c:	10 92 6d 01 	sts	0x016D, r1	; 0x80016d <inicioTiro+0x3>
-     420:	10 92 6e 01 	sts	0x016E, r1	; 0x80016e <tempo>
-     424:	10 92 6f 01 	sts	0x016F, r1	; 0x80016f <tempo+0x1>
-     428:	10 92 70 01 	sts	0x0170, r1	; 0x800170 <tempo+0x2>
-     42c:	10 92 71 01 	sts	0x0171, r1	; 0x800171 <tempo+0x3>
+     410:	10 92 68 01 	sts	0x0168, r1	; 0x800168 <inicioTiro>
+     414:	10 92 69 01 	sts	0x0169, r1	; 0x800169 <inicioTiro+0x1>
+     418:	10 92 6a 01 	sts	0x016A, r1	; 0x80016a <inicioTiro+0x2>
+     41c:	10 92 6b 01 	sts	0x016B, r1	; 0x80016b <inicioTiro+0x3>
+     420:	10 92 6c 01 	sts	0x016C, r1	; 0x80016c <tempo>
+     424:	10 92 6d 01 	sts	0x016D, r1	; 0x80016d <tempo+0x1>
+     428:	10 92 6e 01 	sts	0x016E, r1	; 0x80016e <tempo+0x2>
+     42c:	10 92 6f 01 	sts	0x016F, r1	; 0x80016f <tempo+0x3>
      430:	1a 82       	std	Y+2, r1	; 0x02
      432:	19 82       	std	Y+1, r1	; 0x01
      434:	61 2c       	mov	r6, r1
@@ -608,9 +608,9 @@ Desmontagem da seção .text:
      6b6:	64 e2       	ldi	r22, 0x24	; 36
      6b8:	80 e0       	ldi	r24, 0x00	; 0
      6ba:	0e 94 5b 05 	call	0xab6	; 0xab6 <nokia_lcd_set_cursor>
-     6be:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <__data_end+0x1>
+     6be:	80 91 67 01 	lds	r24, 0x0167	; 0x800167 <__data_end+0x1>
      6c2:	8f 93       	push	r24
-     6c4:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <__data_end>
+     6c4:	80 91 66 01 	lds	r24, 0x0166	; 0x800166 <__data_end>
      6c8:	8f 93       	push	r24
      6ca:	86 e3       	ldi	r24, 0x36	; 54
      6cc:	91 e0       	ldi	r25, 0x01	; 1
@@ -740,17 +740,17 @@ Desmontagem da seção .text:
      7ca:	9f 93       	push	r25
      7cc:	af 93       	push	r26
      7ce:	bf 93       	push	r27
-     7d0:	80 91 6e 01 	lds	r24, 0x016E	; 0x80016e <tempo>
-     7d4:	90 91 6f 01 	lds	r25, 0x016F	; 0x80016f <tempo+0x1>
-     7d8:	a0 91 70 01 	lds	r26, 0x0170	; 0x800170 <tempo+0x2>
-     7dc:	b0 91 71 01 	lds	r27, 0x0171	; 0x800171 <tempo+0x3>
+     7d0:	80 91 6c 01 	lds	r24, 0x016C	; 0x80016c <tempo>
+     7d4:	90 91 6d 01 	lds	r25, 0x016D	; 0x80016d <tempo+0x1>
+     7d8:	a0 91 6e 01 	lds	r26, 0x016E	; 0x80016e <tempo+0x2>
+     7dc:	b0 91 6f 01 	lds	r27, 0x016F	; 0x80016f <tempo+0x3>
      7e0:	01 96       	adiw	r24, 0x01	; 1
      7e2:	a1 1d       	adc	r26, r1
      7e4:	b1 1d       	adc	r27, r1
-     7e6:	80 93 6e 01 	sts	0x016E, r24	; 0x80016e <tempo>
-     7ea:	90 93 6f 01 	sts	0x016F, r25	; 0x80016f <tempo+0x1>
-     7ee:	a0 93 70 01 	sts	0x0170, r26	; 0x800170 <tempo+0x2>
-     7f2:	b0 93 71 01 	sts	0x0171, r27	; 0x800171 <tempo+0x3>
+     7e6:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <tempo>
+     7ea:	90 93 6d 01 	sts	0x016D, r25	; 0x80016d <tempo+0x1>
+     7ee:	a0 93 6e 01 	sts	0x016E, r26	; 0x80016e <tempo+0x2>
+     7f2:	b0 93 6f 01 	sts	0x016F, r27	; 0x80016f <tempo+0x3>
      7f6:	bf 91       	pop	r27
      7f8:	af 91       	pop	r26
      7fa:	9f 91       	pop	r25
@@ -858,11 +858,11 @@ Desmontagem da seção .text:
      8ce:	0e 94 20 04 	call	0x840	; 0x840 <write_cmd>
      8d2:	80 e4       	ldi	r24, 0x40	; 64
      8d4:	0e 94 20 04 	call	0x840	; 0x840 <write_cmd>
-     8d8:	10 92 6a 03 	sts	0x036A, r1	; 0x80036a <nokia_lcd+0x1f8>
-     8dc:	10 92 6b 03 	sts	0x036B, r1	; 0x80036b <nokia_lcd+0x1f9>
+     8d8:	10 92 68 03 	sts	0x0368, r1	; 0x800368 <nokia_lcd+0x1f8>
+     8dc:	10 92 69 03 	sts	0x0369, r1	; 0x800369 <nokia_lcd+0x1f9>
      8e0:	88 ef       	ldi	r24, 0xF8	; 248
      8e2:	91 e0       	ldi	r25, 0x01	; 1
-     8e4:	e2 e7       	ldi	r30, 0x72	; 114
+     8e4:	e0 e7       	ldi	r30, 0x70	; 112
      8e6:	f1 e0       	ldi	r31, 0x01	; 1
      8e8:	df 01       	movw	r26, r30
      8ea:	9c 01       	movw	r18, r24
@@ -892,7 +892,7 @@ Desmontagem da seção .text:
      914:	e0 0d       	add	r30, r0
      916:	f1 1d       	adc	r31, r1
      918:	11 24       	eor	r1, r1
-     91a:	ee 58       	subi	r30, 0x8E	; 142
+     91a:	e0 59       	subi	r30, 0x90	; 144
      91c:	fe 4f       	sbci	r31, 0xFE	; 254
      91e:	67 70       	andi	r22, 0x07	; 7
      920:	81 e0       	ldi	r24, 0x01	; 1
@@ -952,7 +952,7 @@ Desmontagem da seção .text:
      988:	22 0f       	add	r18, r18
      98a:	33 1f       	adc	r19, r19
      98c:	f9 01       	movw	r30, r18
-     98e:	e4 59       	subi	r30, 0x94	; 148
+     98e:	e6 59       	subi	r30, 0x96	; 150
      990:	fc 4f       	sbci	r31, 0xFC	; 252
      992:	00 81       	ld	r16, Z
      994:	11 81       	ldd	r17, Z+1	; 0x01
@@ -1004,8 +1004,8 @@ Desmontagem da seção .text:
      9f6:	27 95       	ror	r18
      9f8:	8a 95       	dec	r24
      9fa:	e2 f7       	brpl	.-8      	; 0x9f4 <nokia_lcd_write_char+0xb4>
-     9fc:	60 91 6b 03 	lds	r22, 0x036B	; 0x80036b <nokia_lcd+0x1f9>
-     a00:	80 91 6a 03 	lds	r24, 0x036A	; 0x80036a <nokia_lcd+0x1f8>
+     9fc:	60 91 69 03 	lds	r22, 0x0369	; 0x800369 <nokia_lcd+0x1f9>
+     a00:	80 91 68 03 	lds	r24, 0x0368	; 0x800368 <nokia_lcd+0x1f8>
      a04:	6e 0d       	add	r22, r14
      a06:	20 ff       	sbrs	r18, 0
      a08:	02 c0       	rjmp	.+4      	; 0xa0e <nokia_lcd_write_char+0xce>
@@ -1018,7 +1018,7 @@ Desmontagem da seção .text:
      a18:	db cf       	rjmp	.-74     	; 0x9d0 <nokia_lcd_write_char+0x90>
      a1a:	d3 94       	inc	r13
      a1c:	d3 cf       	rjmp	.-90     	; 0x9c4 <nokia_lcd_write_char+0x84>
-     a1e:	80 91 6a 03 	lds	r24, 0x036A	; 0x80036a <nokia_lcd+0x1f8>
+     a1e:	80 91 68 03 	lds	r24, 0x0368	; 0x800368 <nokia_lcd+0x1f8>
      a22:	91 e0       	ldi	r25, 0x01	; 1
      a24:	98 0f       	add	r25, r24
      a26:	8f 2d       	mov	r24, r15
@@ -1028,21 +1028,21 @@ Desmontagem da seção .text:
      a2e:	89 0f       	add	r24, r25
      a30:	84 35       	cpi	r24, 0x54	; 84
      a32:	18 f4       	brcc	.+6      	; 0xa3a <nokia_lcd_write_char+0xfa>
-     a34:	80 93 6a 03 	sts	0x036A, r24	; 0x80036a <nokia_lcd+0x1f8>
+     a34:	80 93 68 03 	sts	0x0368, r24	; 0x800368 <nokia_lcd+0x1f8>
      a38:	0b c0       	rjmp	.+22     	; 0xa50 <nokia_lcd_write_char+0x110>
-     a3a:	10 92 6a 03 	sts	0x036A, r1	; 0x80036a <nokia_lcd+0x1f8>
-     a3e:	80 91 6b 03 	lds	r24, 0x036B	; 0x80036b <nokia_lcd+0x1f9>
+     a3a:	10 92 68 03 	sts	0x0368, r1	; 0x800368 <nokia_lcd+0x1f8>
+     a3e:	80 91 69 03 	lds	r24, 0x0369	; 0x800369 <nokia_lcd+0x1f9>
      a42:	8f 5f       	subi	r24, 0xFF	; 255
      a44:	97 e0       	ldi	r25, 0x07	; 7
      a46:	f9 9e       	mul	r15, r25
      a48:	80 0d       	add	r24, r0
      a4a:	11 24       	eor	r1, r1
-     a4c:	80 93 6b 03 	sts	0x036B, r24	; 0x80036b <nokia_lcd+0x1f9>
-     a50:	80 91 6b 03 	lds	r24, 0x036B	; 0x80036b <nokia_lcd+0x1f9>
+     a4c:	80 93 69 03 	sts	0x0369, r24	; 0x800369 <nokia_lcd+0x1f9>
+     a50:	80 91 69 03 	lds	r24, 0x0369	; 0x800369 <nokia_lcd+0x1f9>
      a54:	80 33       	cpi	r24, 0x30	; 48
      a56:	20 f0       	brcs	.+8      	; 0xa60 <nokia_lcd_write_char+0x120>
-     a58:	10 92 6a 03 	sts	0x036A, r1	; 0x80036a <nokia_lcd+0x1f8>
-     a5c:	10 92 6b 03 	sts	0x036B, r1	; 0x80036b <nokia_lcd+0x1f9>
+     a58:	10 92 68 03 	sts	0x0368, r1	; 0x800368 <nokia_lcd+0x1f8>
+     a5c:	10 92 69 03 	sts	0x0369, r1	; 0x800369 <nokia_lcd+0x1f9>
      a60:	0f 90       	pop	r0
      a62:	0f 90       	pop	r0
      a64:	0f 90       	pop	r0
@@ -1067,7 +1067,7 @@ Desmontagem da seção .text:
      a86:	e8 2f       	mov	r30, r24
      a88:	ee 0f       	add	r30, r30
      a8a:	ff 0b       	sbc	r31, r31
-     a8c:	e4 59       	subi	r30, 0x94	; 148
+     a8c:	e6 59       	subi	r30, 0x96	; 150
      a8e:	fc 4f       	sbci	r31, 0xFC	; 252
      a90:	71 83       	std	Z+1, r23	; 0x01
      a92:	60 83       	st	Z, r22
@@ -1091,8 +1091,8 @@ Desmontagem da seção .text:
      ab4:	08 95       	ret
 
 00000ab6 <nokia_lcd_set_cursor>:
-     ab6:	80 93 6a 03 	sts	0x036A, r24	; 0x80036a <nokia_lcd+0x1f8>
-     aba:	60 93 6b 03 	sts	0x036B, r22	; 0x80036b <nokia_lcd+0x1f9>
+     ab6:	80 93 68 03 	sts	0x0368, r24	; 0x800368 <nokia_lcd+0x1f8>
+     aba:	60 93 69 03 	sts	0x0369, r22	; 0x800369 <nokia_lcd+0x1f9>
      abe:	08 95       	ret
 
 00000ac0 <nokia_lcd_render>:
@@ -1102,13 +1102,13 @@ Desmontagem da seção .text:
      ac6:	0e 94 20 04 	call	0x840	; 0x840 <write_cmd>
      aca:	80 e4       	ldi	r24, 0x40	; 64
      acc:	0e 94 20 04 	call	0x840	; 0x840 <write_cmd>
-     ad0:	c2 e7       	ldi	r28, 0x72	; 114
+     ad0:	c0 e7       	ldi	r28, 0x70	; 112
      ad2:	d1 e0       	ldi	r29, 0x01	; 1
      ad4:	61 e0       	ldi	r22, 0x01	; 1
      ad6:	89 91       	ld	r24, Y+
      ad8:	0e 94 04 04 	call	0x808	; 0x808 <write>
      adc:	83 e0       	ldi	r24, 0x03	; 3
-     ade:	ca 36       	cpi	r28, 0x6A	; 106
+     ade:	c8 36       	cpi	r28, 0x68	; 104
      ae0:	d8 07       	cpc	r29, r24
      ae2:	c1 f7       	brne	.-16     	; 0xad4 <nokia_lcd_render+0x14>
      ae4:	df 91       	pop	r29
@@ -1444,10 +1444,10 @@ Desmontagem da seção .text:
      d9c:	fc 01       	movw	r30, r24
      d9e:	0f b6       	in	r0, 0x3f	; 63
      da0:	f8 94       	cli
-     da2:	60 91 ac 03 	lds	r22, 0x03AC	; 0x8003ac <__system_time>
-     da6:	70 91 ad 03 	lds	r23, 0x03AD	; 0x8003ad <__system_time+0x1>
-     daa:	80 91 ae 03 	lds	r24, 0x03AE	; 0x8003ae <__system_time+0x2>
-     dae:	90 91 af 03 	lds	r25, 0x03AF	; 0x8003af <__system_time+0x3>
+     da2:	60 91 aa 03 	lds	r22, 0x03AA	; 0x8003aa <__system_time>
+     da6:	70 91 ab 03 	lds	r23, 0x03AB	; 0x8003ab <__system_time+0x1>
+     daa:	80 91 ac 03 	lds	r24, 0x03AC	; 0x8003ac <__system_time+0x2>
+     dae:	90 91 ad 03 	lds	r25, 0x03AD	; 0x8003ad <__system_time+0x3>
      db2:	0f be       	out	0x3f, r0	; 63
      db4:	30 97       	sbiw	r30, 0x00	; 0
      db6:	21 f0       	breq	.+8      	; 0xdc0 <time+0x24>
@@ -1542,10 +1542,10 @@ Desmontagem da seção .text:
      e86:	19 82       	std	Y+1, r1	; 0x01
      e88:	18 86       	std	Y+8, r1	; 0x08
      e8a:	1f 82       	std	Y+7, r1	; 0x07
-     e8c:	10 92 6a 01 	sts	0x016A, r1	; 0x80016a <inicioTiro>
-     e90:	10 92 6b 01 	sts	0x016B, r1	; 0x80016b <inicioTiro+0x1>
-     e94:	10 92 6c 01 	sts	0x016C, r1	; 0x80016c <inicioTiro+0x2>
-     e98:	10 92 6d 01 	sts	0x016D, r1	; 0x80016d <inicioTiro+0x3>
+     e8c:	10 92 68 01 	sts	0x0168, r1	; 0x800168 <inicioTiro>
+     e90:	10 92 69 01 	sts	0x0169, r1	; 0x800169 <inicioTiro+0x1>
+     e94:	10 92 6a 01 	sts	0x016A, r1	; 0x80016a <inicioTiro+0x2>
+     e98:	10 92 6b 01 	sts	0x016B, r1	; 0x80016b <inicioTiro+0x3>
      e9c:	61 e0       	ldi	r22, 0x01	; 1
      e9e:	81 e4       	ldi	r24, 0x41	; 65
      ea0:	91 e0       	ldi	r25, 0x01	; 1
@@ -1596,10 +1596,10 @@ Desmontagem da seção .text:
      f0a:	31 2c       	mov	r3, r1
      f0c:	21 01       	movw	r4, r2
      f0e:	23 94       	inc	r2
-     f10:	60 91 6e 01 	lds	r22, 0x016E	; 0x80016e <tempo>
-     f14:	70 91 6f 01 	lds	r23, 0x016F	; 0x80016f <tempo+0x1>
-     f18:	80 91 70 01 	lds	r24, 0x0170	; 0x800170 <tempo+0x2>
-     f1c:	90 91 71 01 	lds	r25, 0x0171	; 0x800171 <tempo+0x3>
+     f10:	60 91 6c 01 	lds	r22, 0x016C	; 0x80016c <tempo>
+     f14:	70 91 6d 01 	lds	r23, 0x016D	; 0x80016d <tempo+0x1>
+     f18:	80 91 6e 01 	lds	r24, 0x016E	; 0x80016e <tempo+0x2>
+     f1c:	90 91 6f 01 	lds	r25, 0x016F	; 0x80016f <tempo+0x3>
      f20:	95 01       	movw	r18, r10
      f22:	0b 2c       	mov	r0, r11
      f24:	00 0c       	add	r0, r0
@@ -2067,45 +2067,45 @@ Desmontagem da seção .text:
     12ce:	e1 f7       	brne	.-8      	; 0x12c8 <main+0x506>
     12d0:	00 c0       	rjmp	.+0      	; 0x12d2 <main+0x510>
     12d2:	00 00       	nop
-    12d4:	20 92 6a 01 	sts	0x016A, r2	; 0x80016a <inicioTiro>
-    12d8:	30 92 6b 01 	sts	0x016B, r3	; 0x80016b <inicioTiro+0x1>
-    12dc:	40 92 6c 01 	sts	0x016C, r4	; 0x80016c <inicioTiro+0x2>
-    12e0:	50 92 6d 01 	sts	0x016D, r5	; 0x80016d <inicioTiro+0x3>
+    12d4:	20 92 68 01 	sts	0x0168, r2	; 0x800168 <inicioTiro>
+    12d8:	30 92 69 01 	sts	0x0169, r3	; 0x800169 <inicioTiro+0x1>
+    12dc:	40 92 6a 01 	sts	0x016A, r4	; 0x80016a <inicioTiro+0x2>
+    12e0:	50 92 6b 01 	sts	0x016B, r5	; 0x80016b <inicioTiro+0x3>
     12e4:	0f b6       	in	r0, 0x3f	; 63
     12e6:	f8 94       	cli
     12e8:	de bf       	out	0x3e, r29	; 62
     12ea:	0f be       	out	0x3f, r0	; 63
     12ec:	cd bf       	out	0x3d, r28	; 61
-    12ee:	80 91 6a 01 	lds	r24, 0x016A	; 0x80016a <inicioTiro>
-    12f2:	90 91 6b 01 	lds	r25, 0x016B	; 0x80016b <inicioTiro+0x1>
-    12f6:	a0 91 6c 01 	lds	r26, 0x016C	; 0x80016c <inicioTiro+0x2>
-    12fa:	b0 91 6d 01 	lds	r27, 0x016D	; 0x80016d <inicioTiro+0x3>
+    12ee:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <inicioTiro>
+    12f2:	90 91 69 01 	lds	r25, 0x0169	; 0x800169 <inicioTiro+0x1>
+    12f6:	a0 91 6a 01 	lds	r26, 0x016A	; 0x80016a <inicioTiro+0x2>
+    12fa:	b0 91 6b 01 	lds	r27, 0x016B	; 0x80016b <inicioTiro+0x3>
     12fe:	18 16       	cp	r1, r24
     1300:	19 06       	cpc	r1, r25
     1302:	1a 06       	cpc	r1, r26
     1304:	1b 06       	cpc	r1, r27
     1306:	ec f4       	brge	.+58     	; 0x1342 <main+0x580>
     1308:	40 9a       	sbi	0x08, 0	; 8
-    130a:	40 91 6a 01 	lds	r20, 0x016A	; 0x80016a <inicioTiro>
-    130e:	50 91 6b 01 	lds	r21, 0x016B	; 0x80016b <inicioTiro+0x1>
-    1312:	60 91 6c 01 	lds	r22, 0x016C	; 0x80016c <inicioTiro+0x2>
-    1316:	70 91 6d 01 	lds	r23, 0x016D	; 0x80016d <inicioTiro+0x3>
-    131a:	80 91 6e 01 	lds	r24, 0x016E	; 0x80016e <tempo>
-    131e:	90 91 6f 01 	lds	r25, 0x016F	; 0x80016f <tempo+0x1>
-    1322:	a0 91 70 01 	lds	r26, 0x0170	; 0x800170 <tempo+0x2>
-    1326:	b0 91 71 01 	lds	r27, 0x0171	; 0x800171 <tempo+0x3>
+    130a:	40 91 68 01 	lds	r20, 0x0168	; 0x800168 <inicioTiro>
+    130e:	50 91 69 01 	lds	r21, 0x0169	; 0x800169 <inicioTiro+0x1>
+    1312:	60 91 6a 01 	lds	r22, 0x016A	; 0x80016a <inicioTiro+0x2>
+    1316:	70 91 6b 01 	lds	r23, 0x016B	; 0x80016b <inicioTiro+0x3>
+    131a:	80 91 6c 01 	lds	r24, 0x016C	; 0x80016c <tempo>
+    131e:	90 91 6d 01 	lds	r25, 0x016D	; 0x80016d <tempo+0x1>
+    1322:	a0 91 6e 01 	lds	r26, 0x016E	; 0x80016e <tempo+0x2>
+    1326:	b0 91 6f 01 	lds	r27, 0x016F	; 0x80016f <tempo+0x3>
     132a:	84 0f       	add	r24, r20
     132c:	95 1f       	adc	r25, r21
     132e:	a6 1f       	adc	r26, r22
     1330:	b7 1f       	adc	r27, r23
-    1332:	80 93 6a 01 	sts	0x016A, r24	; 0x80016a <inicioTiro>
-    1336:	90 93 6b 01 	sts	0x016B, r25	; 0x80016b <inicioTiro+0x1>
-    133a:	a0 93 6c 01 	sts	0x016C, r26	; 0x80016c <inicioTiro+0x2>
-    133e:	b0 93 6d 01 	sts	0x016D, r27	; 0x80016d <inicioTiro+0x3>
-    1342:	80 91 6a 01 	lds	r24, 0x016A	; 0x80016a <inicioTiro>
-    1346:	90 91 6b 01 	lds	r25, 0x016B	; 0x80016b <inicioTiro+0x1>
-    134a:	a0 91 6c 01 	lds	r26, 0x016C	; 0x80016c <inicioTiro+0x2>
-    134e:	b0 91 6d 01 	lds	r27, 0x016D	; 0x80016d <inicioTiro+0x3>
+    1332:	80 93 68 01 	sts	0x0168, r24	; 0x800168 <inicioTiro>
+    1336:	90 93 69 01 	sts	0x0169, r25	; 0x800169 <inicioTiro+0x1>
+    133a:	a0 93 6a 01 	sts	0x016A, r26	; 0x80016a <inicioTiro+0x2>
+    133e:	b0 93 6b 01 	sts	0x016B, r27	; 0x80016b <inicioTiro+0x3>
+    1342:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <inicioTiro>
+    1346:	90 91 69 01 	lds	r25, 0x0169	; 0x800169 <inicioTiro+0x1>
+    134a:	a0 91 6a 01 	lds	r26, 0x016A	; 0x80016a <inicioTiro+0x2>
+    134e:	b0 91 6b 01 	lds	r27, 0x016B	; 0x80016b <inicioTiro+0x3>
     1352:	88 3b       	cpi	r24, 0xB8	; 184
     1354:	9b 40       	sbci	r25, 0x0B	; 11
     1356:	a1 05       	cpc	r26, r1
@@ -2127,21 +2127,21 @@ Desmontagem da seção .text:
     1376:	68 16       	cp	r6, r24
     1378:	71 04       	cpc	r7, r1
     137a:	59 f0       	breq	.+22     	; 0x1392 <main+0x5d0>
-    137c:	20 92 6a 01 	sts	0x016A, r2	; 0x80016a <inicioTiro>
-    1380:	30 92 6b 01 	sts	0x016B, r3	; 0x80016b <inicioTiro+0x1>
-    1384:	40 92 6c 01 	sts	0x016C, r4	; 0x80016c <inicioTiro+0x2>
-    1388:	50 92 6d 01 	sts	0x016D, r5	; 0x80016d <inicioTiro+0x3>
+    137c:	20 92 68 01 	sts	0x0168, r2	; 0x800168 <inicioTiro>
+    1380:	30 92 69 01 	sts	0x0169, r3	; 0x800169 <inicioTiro+0x1>
+    1384:	40 92 6a 01 	sts	0x016A, r4	; 0x80016a <inicioTiro+0x2>
+    1388:	50 92 6b 01 	sts	0x016B, r5	; 0x80016b <inicioTiro+0x3>
     138c:	81 e0       	ldi	r24, 0x01	; 1
     138e:	90 e0       	ldi	r25, 0x00	; 0
     1390:	14 c0       	rjmp	.+40     	; 0x13ba <main+0x5f8>
-    1392:	10 92 6a 01 	sts	0x016A, r1	; 0x80016a <inicioTiro>
-    1396:	10 92 6b 01 	sts	0x016B, r1	; 0x80016b <inicioTiro+0x1>
-    139a:	10 92 6c 01 	sts	0x016C, r1	; 0x80016c <inicioTiro+0x2>
-    139e:	10 92 6d 01 	sts	0x016D, r1	; 0x80016d <inicioTiro+0x3>
-    13a2:	10 92 6e 01 	sts	0x016E, r1	; 0x80016e <tempo>
-    13a6:	10 92 6f 01 	sts	0x016F, r1	; 0x80016f <tempo+0x1>
-    13aa:	10 92 70 01 	sts	0x0170, r1	; 0x800170 <tempo+0x2>
-    13ae:	10 92 71 01 	sts	0x0171, r1	; 0x800171 <tempo+0x3>
+    1392:	10 92 68 01 	sts	0x0168, r1	; 0x800168 <inicioTiro>
+    1396:	10 92 69 01 	sts	0x0169, r1	; 0x800169 <inicioTiro+0x1>
+    139a:	10 92 6a 01 	sts	0x016A, r1	; 0x80016a <inicioTiro+0x2>
+    139e:	10 92 6b 01 	sts	0x016B, r1	; 0x80016b <inicioTiro+0x3>
+    13a2:	10 92 6c 01 	sts	0x016C, r1	; 0x80016c <tempo>
+    13a6:	10 92 6d 01 	sts	0x016D, r1	; 0x80016d <tempo+0x1>
+    13aa:	10 92 6e 01 	sts	0x016E, r1	; 0x80016e <tempo+0x2>
+    13ae:	10 92 6f 01 	sts	0x016F, r1	; 0x80016f <tempo+0x3>
     13b2:	61 2c       	mov	r6, r1
     13b4:	71 2c       	mov	r7, r1
     13b6:	80 e0       	ldi	r24, 0x00	; 0
