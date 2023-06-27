@@ -231,7 +231,7 @@ int main(void)
     time_t marcaTiro;
     //marcaTiro = clock();
     double tempoTiro = 0;
-    int tiroFim;
+    int tiroFim = 0;
 
     //lcd write p1: qual objeto | p2: qual o tamanho
     /*nokia_lcd_write_string("Defenda a Terra!",1);
