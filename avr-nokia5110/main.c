@@ -347,7 +347,7 @@ int main(void)
 
 
             if (tela.bTiroInimigos == 1 && avancoInimigos >= 3000){
-                for (int k = 0; k < tela.oponentes; k++){
+                for (int k = 0; k < tela.nOponentes; k++){
                     tela.oponentes[k].xTiro -= 4;
                 }
                 tela.tiroFimInimigos++;
