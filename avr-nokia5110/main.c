@@ -145,7 +145,6 @@ objetosTela invocaInimigo(objetosTela tela){
 }
 
 objetosTela tiroPlayer(objetosTela tela){
-    tela = invocaInimigo(tela);
     tela.bTiro = 1;
     tela.xTiro = 8;
     tela.yTiro = tela.yPlayer;
@@ -165,7 +164,10 @@ void moveNave(int x, int y){
 }
 
 ISR(TIMER1_COMPA_vect) {
-    tempo++; 
+    tempo++;
+
+    if (tempo % 15000 == 0)
+    tela = invocaInimigo(tela); 
 }
 
 
