@@ -155,6 +155,7 @@ void derrota(){
     nokia_lcd_write_string("Os aliens", 1);
     nokia_lcd_set_cursor(0, 24);
     nokia_lcd_write_string("invadiram!", 1);
+    nokia_lcd_set_cursor(0, 36);
     nokia_lcd_write_string("Pont.: " + pontos, 1);
     nokia_lcd_render();
     while (1){}
