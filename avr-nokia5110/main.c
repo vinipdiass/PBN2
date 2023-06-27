@@ -130,9 +130,9 @@ objetosTela desenhaTela(objetosTela tela){
                 tempo = 0;
                 //tela.oponentes[tela.nOponentes] = NULL;
             }
-        }*/
+        }
     }
-    
+    */
     /*
     //Teste: Desenha oponentes na tela inteira
     for (int i = 0; i < 4; i++){
@@ -154,17 +154,6 @@ objetosTela desenhaTela(objetosTela tela){
     
 
     nokia_lcd_render();
-    return tela;
-}
-
-objetosTela tiroPlayer(objetosTela tela){
-    tela.bTiro = 1;
-    tela.xTiro = 8;
-    tela.yTiro = tela.yPlayer;
-    //for (int i = 0; i<16; i++){
-    //}
-    //tela.bTiro = 0;
-    tela = desenhaTela(tela);
     return tela;
 }
 
@@ -200,7 +189,16 @@ objetosTela invocaInimigo(objetosTela tela){
     return tela;
 }
 
-
+objetosTela tiroPlayer(objetosTela tela){
+    tela.bTiro = 1;
+    tela.xTiro = 8;
+    tela.yTiro = tela.yPlayer;
+    //for (int i = 0; i<16; i++){
+    //}
+    //tela.bTiro = 0;
+    tela = desenhaTela(tela);
+    return tela;
+}
 
 objetosTela tiroInimigos(objetosTela tela, int k){
     tela.oponentes[k].bTiro = 1;
@@ -226,7 +224,7 @@ ISR(TIMER1_COMPA_vect) {
 }
 
 
-void main()
+int main(void)
 {
     nokia_lcd_init();
     nokia_lcd_clear();
@@ -318,6 +316,7 @@ void main()
                 _delay_ms(100);
             }
 
+
             if (PIND & (1 << PD6)){
                 if (tela.yPlayer!=0) tela.yPlayer-=4;
                 tela = desenhaTela(tela);
@@ -339,7 +338,7 @@ void main()
             if (avancoInimigos >= 10000 && tela.bTiroInimigos == 0){
                 tela.bTiroInimigos = 1;
                 for (int k = 0; k < tela.nOponentes; k++){
-                    tela = tiroInimigos(tela, k);
+                    tela = tiroInimigos(tela, tela.oponentes[k]);
                 }
                 tela = desenhaTela(tela);
                 avancoInimigos = 0;
@@ -348,7 +347,7 @@ void main()
 
 
             if (tela.bTiroInimigos == 1 && avancoInimigos >= 3000){
-                for (int k = 0; k < tela.nOponentes; k++){
+                for (int k = 0; k < tela.oponentes; k++){
                     tela.oponentes[k].xTiro -= 4;
                 }
                 tela.tiroFimInimigos++;
@@ -356,6 +355,7 @@ void main()
                     tela.bTiroInimigos = 0;
                     tela.tiroFimInimigos = 0;
                     tempoInimigos = 0;
+                    avancoInimigos = 0;
                 }
                 tela = desenhaTela(tela);
             }
@@ -376,6 +376,4 @@ void main()
             }
         }
     //}
-
-    //return 0;
 }
