@@ -249,7 +249,7 @@ int main(void)
 
     //if(PIND & (1 << PD7) || PIND & (1 << PD6) || PINB & (1 << PB0)) {
         while (1) {
-            if (tempo % 15000 == 0)
+            if (tempo % 45000 == 0)
              tela = invocaInimigo(tela); 
 
             if (PIND & (1 << PD7)){
