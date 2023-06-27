@@ -257,10 +257,16 @@ int main(void)
                 _delay_ms(100);
             }
         
-            if (PINB & (1 << PB0) && tiroFim == 0){
-                tela = tiroPlayer(tela);
-                _delay_ms(100);
-                inicioTiro = 1;
+            if (PINB & (1 << PB0)){
+                if (tela.bTiro == 1){
+                    tela = tiroPlayer(tela);
+                    _delay_ms(100);
+                    inicioTiro = 1;
+                }
+                else{
+                    tiroFim = 0;
+                }
+
             }
             
             if(inicioTiro > 0) {
