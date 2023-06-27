@@ -56,8 +56,7 @@ objetosTela desenhaTela(objetosTela tela){
     //Desenha a nave
     nokia_lcd_set_cursor(tela.xPlayer, tela.yPlayer);
     nokia_lcd_write_char(2, 2);
-    nokia_lcd_set_cursor(24, 0);
-    nokia_lcd_write_string("P: " + pontos,1);
+    
 
     //Desenha o tiro do jogador
     if (tela.bTiro == 1){
@@ -156,6 +155,7 @@ void derrota(){
     nokia_lcd_write_string("Os aliens", 1);
     nokia_lcd_set_cursor(0, 24);
     nokia_lcd_write_string("invadiram!", 1);
+    nokia_lcd_write_string("Pont.: " + pontos, 1);
     nokia_lcd_render();
     while (1){}
 }
