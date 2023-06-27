@@ -169,11 +169,12 @@ ISR(TIMER1_COMPA_vect) {
 }
 
 
+
 int main(void)
 {
     nokia_lcd_init();
     nokia_lcd_clear();
-    nokia_lcd_custom(1, glyph);
+    //nokia_lcd_custom(1, glyph);
     // nokia_lcd_write_string("IT'S WORKING!",1);
     // nokia_lcd_set_cursor(0, 12);
     // nokia_lcd_write_string("Nice!\001", 2);
@@ -242,52 +243,54 @@ int main(void)
     //double tempoTiro = 0;
     tela.tiroFim = 0;
     //lcd write p1: qual objeto | p2: qual o tamanho
-    /*nokia_lcd_write_string("Defenda a Terra!",1);
+    nokia_lcd_write_string("Defenda a Terra!",1);
     nokia_lcd_set_cursor(0, 12);
-    nokia_lcd_write_string("Aperte para Começar", 2);
-    nokia_lcd_render();*/
+    nokia_lcd_write_string("Aperte para Começar", 1);
+    nokia_lcd_render();
 
-    //if(PIND & (1 << PD7) || PIND & (1 << PD6) || PINB & (1 << PB0)) {
-        while (1) {
-            if (tempo % 45000 == 0)
-             tela = invocaInimigo(tela); 
+    while(1) {
+        if(PIND & (1 << PD7) || PIND & (1 << PD6) || PINB & (1 << PB0)) break;
+    }
 
-            if (PIND & (1 << PD7)){
-                if (tela.yPlayer!=32) tela.yPlayer+=4;
-                tela = desenhaTela(tela);
-                _delay_ms(100);
-            }
-
-            if (PIND & (1 << PD6)){
-                if (tela.yPlayer!=0) tela.yPlayer-=4;
-                tela = desenhaTela(tela);
-                _delay_ms(100);
-            }
-        
-            if (PINB & (1 << PB0) && tela.bTiro == 0){
-                tela = tiroPlayer(tela);
-                _delay_ms(100);
-                inicioTiro = 1;
-            }
-            
-            if(inicioTiro > 0) {
-                PORTC |= (1 << PC0);
-                inicioTiro += tempo;
-            }
-            //tempoTiro = (double)(marcaTiro - inicioTiro) / CLOCKS_PER_SEC;
-            if (inicioTiro >= 3000 && tela.bTiro == 1){ 
-                
-                tela.xTiro += 4;
-                inicioTiro = 1;
-                tela.tiroFim++;
-                if (tela.tiroFim == 20){
-                    tela.bTiro = 0;
-                    tela.tiroFim = 0;
-                    inicioTiro = 0;
-                    tempo = 0;
-                }
-                tela = desenhaTela(tela);
-            }
+    while (1) {
+        if (tempo % 45000 == 0)
+            tela = invocaInimigo(tela); 
+        if (PIND & (1 << PD7)){
+            if (tela.yPlayer!=32) tela.yPlayer+=4;
+            tela = desenhaTela(tela);
+            _delay_ms(100);
         }
-    //}
+
+        if (PIND & (1 << PD6)){
+            if (tela.yPlayer!=0) tela.yPlayer-=4;
+            tela = desenhaTela(tela);
+            _delay_ms(100);
+        }
+        
+        if (PINB & (1 << PB0) && tela.bTiro == 0){
+            tela = tiroPlayer(tela);
+            _delay_ms(100);
+            inicioTiro = 1;
+        }
+            
+        if(inicioTiro > 0) {
+            PORTC |= (1 << PC0);
+            inicioTiro += tempo;
+        }
+            //tempoTiro = (double)(marcaTiro - inicioTiro) / CLOCKS_PER_SEC;
+        if (inicioTiro >= 3000 && tela.bTiro == 1){ 
+              
+            tela.xTiro += 4;
+            inicioTiro = 1;
+            tela.tiroFim++;
+            if (tela.tiroFim == 20){
+                tela.bTiro = 0;
+                tela.tiroFim = 0;
+                inicioTiro = 0;
+                tempo = 0;
+            }
+            tela = desenhaTela(tela);
+        }
+        
+    }
 }
