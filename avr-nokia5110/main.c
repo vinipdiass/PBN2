@@ -148,7 +148,6 @@ objetosTela invocaInimigo(objetosTela tela){
 }
 
 void derrota(){
-    
     nokia_lcd_clear();
     nokia_lcd_write_string("Derrota!",1);
     nokia_lcd_set_cursor(0, 12);
@@ -273,9 +272,10 @@ int main(void)
     }
 
     while (1) {
-        if (tempo % 45000 == 0){
+        if (tempo > 45000 == 0){
             tela = invocaInimigo(tela); 
             tela = desenhaTela(tela);
+            tempo = 0;
         }
             
 
