@@ -251,7 +251,7 @@ int main(void)
         while (1) {
             if (tempo % 15000 == 0)
              tela = invocaInimigo(tela); 
-             
+
             if (PIND & (1 << PD7)){
                 if (tela.yPlayer!=32) tela.yPlayer+=4;
                 tela = desenhaTela(tela);
@@ -264,7 +264,7 @@ int main(void)
                 _delay_ms(100);
             }
         
-            if (PINB & (1 << PB0) && tela.tiroFim == 0){
+            if (PINB & (1 << PB0) && tela.bTiro == 0){
                 tela = tiroPlayer(tela);
                 _delay_ms(100);
                 inicioTiro = 1;
