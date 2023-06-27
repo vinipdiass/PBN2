@@ -37,6 +37,7 @@ typedef struct{
     int bTiro;
     int matrizX;
     int matrizY;
+    int tempo;
 }inimigo;
 
 typedef struct{
@@ -127,7 +128,7 @@ objetosTela invocaInimigo(objetosTela tela){
 
     inimigo inimigoAtual;
     inimigoAtual.bTiro = 0;
-
+    inimigoAtual.tempo - 0;
     inimigoAtual.matrizX = (rand() % 2);
     inimigoAtual.x = 68 - (inimigoAtual.matrizX * 12);
     inimigoAtual.matrizY = rand() % 4;
@@ -263,11 +264,15 @@ int main(void)
     //marcaTiro = clock();
     //double tempoTiro = 0;
     tela.tiroFim = 0;
-    tela.dificuldade = 4500;
+    tela.dificuldade = 45000;
     //lcd write p1: qual objeto | p2: qual o tamanho
-    nokia_lcd_write_string("Defenda a Terra!",1);
+    nokia_lcd_write_string("Defenda a",1);
     nokia_lcd_set_cursor(0, 12);
+    nokia_lcd_write_string("Terra!",1);
+    nokia_lcd_set_cursor(0, 24);
     nokia_lcd_write_string("Aperte para Começar", 1);
+    nokia_lcd_set_cursor(0, 36);
+    nokia_lcd_write_string("Começar", 1);
     nokia_lcd_render();
 
     while(1) {
@@ -280,7 +285,12 @@ int main(void)
             tela = invocaInimigo(tela); 
             tela = desenhaTela(tela);
         }
-            
+        
+        for (int k = 0; k < tela.nOponentes; k++){
+            tela.oponentes[k].tempo++;
+            if ( tela.oponentes[k].tempo == 100000) derrota();
+        }
+
 
         if (tela.nOponentes == 8){
             _delay_ms(1000);
