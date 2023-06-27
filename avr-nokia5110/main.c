@@ -255,13 +255,13 @@ int main(void)
             if (PINB & (1 << PB0)){
                 tela = tiroPlayer(tela);
                 _delay_ms(100);
-                clock_t inicioTiro = clock();
+                inicioTiro = clock();
             }
 
             if (tela.bTiro == 1 && ((clock() - inicioTiro) / CLOCKS_PER_SEC) >= 3){
                 tela = desenhaTela(tela);
                 tela.xTiro += 4;
-                clock_t inicioTiro = clock();
+                inicioTiro = clock();
             }
         }
     }
