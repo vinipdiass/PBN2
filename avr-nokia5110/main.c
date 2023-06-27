@@ -263,8 +263,11 @@ int main(void)
     }
 
     while (1) {
-        if (tempo % 45000 == 0)
+        if (tempo % 45000 == 0){
             tela = invocaInimigo(tela); 
+            tela = desenhaTela(tela);
+        }
+            
 
         if (tela.nOponentes == 8){
             derrota();
