@@ -288,7 +288,7 @@ int main(void)
         
         for (int k = 0; k < tela.nOponentes; k++){
             tela.oponentes[k].tempo++;
-            if ( tela.oponentes[k].tempo == 100000) derrota();
+            if ( tela.oponentes[k].tempo > 70000) derrota();
         }
 
 
