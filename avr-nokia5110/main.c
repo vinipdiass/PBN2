@@ -46,6 +46,7 @@ typedef struct{
     inimigo oponentes[8];
     int nOponentes;
     int matrizOponentes[2][4];
+    int tiroFim;
 }objetosTela;
 
 objetosTela desenhaTela(objetosTela tela){
@@ -79,6 +80,7 @@ objetosTela desenhaTela(objetosTela tela){
                     tela.oponentes[j] = tela.oponentes[j+1];
                 }
                 tela.bTiro = 0;
+                tela.tiroFim = 0;
                 //tela.oponentes[tela.nOponentes] = NULL;
             }
         }
@@ -235,8 +237,7 @@ int main(void)
     long marcaTiro;
     //marcaTiro = clock();
     //double tempoTiro = 0;
-    int tiroFim = 0;
-    int tiroFim2 = 0;
+    int tela.tiroFim = 0;
     //lcd write p1: qual objeto | p2: qual o tamanho
     /*nokia_lcd_write_string("Defenda a Terra!",1);
     nokia_lcd_set_cursor(0, 12);
@@ -257,7 +258,7 @@ int main(void)
                 _delay_ms(100);
             }
         
-            if (PINB & (1 << PB0) && tiroFim == 0){
+            if (PINB & (1 << PB0) && tela.tiroFim == 0){
                 tela = tiroPlayer(tela);
                 _delay_ms(100);
                 inicioTiro = 1;
@@ -272,10 +273,10 @@ int main(void)
                 tela = desenhaTela(tela);
                 tela.xTiro += 4;
                 inicioTiro = 1;
-                tiroFim++;
-                if (tiroFim == 16){
+                tela.tiroFim++;
+                if (tela.tiroFim == 16){
                     tela.bTiro = 0;
-                    tiroFim = 0;
+                    tela.tiroFim = 0;
                     inicioTiro = 0;
                     tempo = 0;
                 }
