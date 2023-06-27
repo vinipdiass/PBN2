@@ -27,6 +27,7 @@ uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 
 long tempo = 0;
 long inicioTiro = 0;
+int pontos = 0;
 
 typedef struct{
     int x;
@@ -55,6 +56,8 @@ objetosTela desenhaTela(objetosTela tela){
     //Desenha a nave
     nokia_lcd_set_cursor(tela.xPlayer, tela.yPlayer);
     nokia_lcd_write_char(2, 2);
+    nokia_lcd_set_cursor(24, 0);
+    nokia_lcd_write_string("P: " + pontos,1);
 
     //Desenha o tiro do jogador
     if (tela.bTiro == 1){
@@ -77,6 +80,7 @@ objetosTela desenhaTela(objetosTela tela){
         for (int i = 0; i < tela.nOponentes; i++){
             if ((xTiroMatriz == tela.oponentes[i].matrizX) && (yTiroMatriz == tela.oponentes[i].matrizY)){
                 tela.nOponentes--;
+                pontos++;
                 for(int j = i; j < tela.nOponentes; j++){
                     tela.oponentes[j] = tela.oponentes[j+1];
                 }
