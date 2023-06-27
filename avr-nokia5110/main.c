@@ -276,7 +276,7 @@ int main(void)
             }
             //tempoTiro = (double)(marcaTiro - inicioTiro) / CLOCKS_PER_SEC;
             if (inicioTiro >= 3000 && tela.bTiro == 1){ 
-                tela = desenhaTela(tela);
+                
                 tela.xTiro += 4;
                 inicioTiro = 1;
                 tela.tiroFim++;
@@ -286,6 +286,7 @@ int main(void)
                     inicioTiro = 0;
                     tempo = 0;
                 }
+                tela = desenhaTela(tela);
             }
         }
     //}
