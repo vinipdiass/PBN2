@@ -25,6 +25,8 @@ uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 #define TIMER_CLK		F_CPU / 1024
 #define IRQ_FREQ		15625
 
+long tempo = 0;
+
 typedef struct{
     int x;
     int y;
@@ -158,7 +160,7 @@ void moveNave(int x, int y){
 }
 
 ISR(TIMER1_COMPA_vect) {
-    // Aqui vai a função de animação dos disparos 
+    tempo++; 
 }
 
 
@@ -178,6 +180,8 @@ int main(void)
     DDRD &= ~(1 << PD6); // Cima
     DDRD &= ~(1 << PD7); // Baixo
     DDRB &= ~(1 << PB0); // Atira
+
+    DDRC |= (1 << PC0); // Cima
     
     uint8_t nave[5] = {
         0B1011101,
@@ -227,12 +231,12 @@ int main(void)
     tela.yTiro = 0;
     tela.bTiro = 0;
     tela.nOponentes = 0;
-    time_t inicioTiro;
-    time_t marcaTiro;
+    long inicioTiro = 0;
+    long marcaTiro;
     //marcaTiro = clock();
-    double tempoTiro = 0;
+    //double tempoTiro = 0;
     int tiroFim = 0;
-
+    int tiroFim2 = 0;
     //lcd write p1: qual objeto | p2: qual o tamanho
     /*nokia_lcd_write_string("Defenda a Terra!",1);
     nokia_lcd_set_cursor(0, 12);
@@ -256,15 +260,18 @@ int main(void)
             if (PINB & (1 << PB0)){
                 tela = tiroPlayer(tela);
                 _delay_ms(100);
-                inicioTiro = time(NULL);
+                inicioTiro = 1;
             }
-
-            marcaTiro = time(NULL);
+            
+            if(inicioTiro > 0) {
+                PORTC |= (1 << PC0);
+                inicioTiro += tempo;
+            }
             //tempoTiro = (double)(marcaTiro - inicioTiro) / CLOCKS_PER_SEC;
-            if ((marcaTiro - inicioTiro) >= 30 && tela.bTiro == 1){
+            if (inicioTiro >= 3000 && tela.bTiro == 1){ 
                 tela = desenhaTela(tela);
                 tela.xTiro += 4;
-                inicioTiro = time(NULL);
+                inicioTiro = 1;
                 tiroFim++;
                 if (tiroFim == 16){
                     tela.bTiro = 0;
