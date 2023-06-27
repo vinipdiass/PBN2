@@ -25,8 +25,6 @@ uint8_t glyph[] = {0b00010000, 0b00100100, 0b11100000, 0b00100100, 0b00010000};
 #define TIMER_CLK		F_CPU / 1024
 #define IRQ_FREQ		15625
 
-
-
 typedef struct{
     int x;
     int y;
@@ -230,9 +228,10 @@ int main(void)
     tela.yTiro = 0;
     tela.bTiro = 0;
     tela.nOponentes = 0;
-    clock_t inicioTiro;
-    clock_t marcaTiro;
-    double tempoTiro;
+    time_t inicioTiro;
+    time_t marcaTiro;
+    //marcaTiro = clock();
+    double tempoTiro = 0;
 
     //lcd write p1: qual objeto | p2: qual o tamanho
     /*nokia_lcd_write_string("Defenda a Terra!",1);
@@ -240,7 +239,7 @@ int main(void)
     nokia_lcd_write_string("Aperte para Começar", 2);
     nokia_lcd_render();*/
 
-    if(PIND & (1 << PD7) || PIND & (1 << PD6) || PINB & (1 << PB0)) {
+    //if(PIND & (1 << PD7) || PIND & (1 << PD6) || PINB & (1 << PB0)) {
         while (1) {
             if (PIND & (1 << PD7)){
                 if (tela.yPlayer!=32) tela.yPlayer+=4;
@@ -257,16 +256,16 @@ int main(void)
             if (PINB & (1 << PB0)){
                 tela = tiroPlayer(tela);
                 _delay_ms(100);
-                inicioTiro = clock();
+                inicioTiro = time(NULL);
             }
 
-            marcaTiro = clock();
-            tempoTiro = (double)(marcaTiro - inicioTiro) / CLOCKS_PER_SEC;
-            if (tela.bTiro == 1 && tempoTiro >= 3){
+            marcaTiro = time(NULL);
+            //tempoTiro = (double)(marcaTiro - inicioTiro) / CLOCKS_PER_SEC;
+            if ((marcaTiro - inicioTiro) >= 30){
                 tela = desenhaTela(tela);
                 tela.xTiro += 4;
-                inicioTiro = clock();
+                inicioTiro = time(NULL);
             }
         }
-    }
+    //}
 }
